@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/27 11:03:58 by acarlott          #+#    #+#             */
-/*   Updated: 2023/09/27 21:08:50 by acarlott         ###   ########lyon.fr   */
+/*   Created: 2023/09/27 21:18:05 by acarlott          #+#    #+#             */
+/*   Updated: 2023/09/27 21:35:44 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Zombie.hpp"
 
-int	main(void) 
+Zombie::Zombie(void)
 {
-	Zombie	ZombieStack("Stack");
-	Zombie	*ZombieHeap = newZombie("Heap");
-	ZombieHeap->announce();
-	delete (ZombieHeap);
-	randomChump("Random");
-	ZombieStack.announce();
-	return (0);
+	return ;
+}
+Zombie::~Zombie(void)
+{
+	return ;
+}
+void	Zombie::announce( void ) 
+{
+	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;;
+}
+
+void	Zombie::setZombieName(std::string name)
+{
+	this->_name = name;
+	return ;
 }
