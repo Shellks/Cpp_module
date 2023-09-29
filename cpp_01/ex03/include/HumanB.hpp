@@ -6,13 +6,13 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 18:02:28 by acarlott          #+#    #+#             */
-/*   Updated: 2023/09/28 21:17:38 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/09/29 10:06:52 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #ifndef HumanB_HPP
-#define HumanB_HPP
+# define HumanB_HPP
 
 # include <iostream>
 # include "Weapon.hpp"

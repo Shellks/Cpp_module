@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/28 17:52:40 by acarlott          #+#    #+#             */
-/*   Updated: 2023/09/29 10:06:55 by acarlott         ###   ########lyon.fr   */
+/*   Created: 2023/09/29 13:22:41 by acarlott          #+#    #+#             */
+/*   Updated: 2023/09/29 14:51:50 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#ifndef WEAPON_HPP
-# define WEAPON_HPP
+#include "../include/Harl.hpp"
 
-# include <iostream>
-
-class Weapon
+int	main(int argc, char **argv)
 {
-private:
-	std::string	_type;
+	Harl	Harlcomplain;
 
-public:
-	Weapon(std::string Weapon);
-	~Weapon(void);
-
-	const std::string&	getType(void) const;
-	void				setType(const std::string type);
-};
-
-#endif
+	if (argc != 2) {
+		std::cout << "Wrong numbers of parameters, only one expected" << std::endl;
+		return 1;
+	}
+	Harlcomplain.complain((std::string)argv[1]);
+	return 0;
+}

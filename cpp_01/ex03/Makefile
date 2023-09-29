@@ -6,7 +6,7 @@
 #    By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/28 17:48:20 by acarlott          #+#    #+#              #
-#    Updated: 2023/09/28 17:52:17 by acarlott         ###   ########lyon.fr    #
+#    Updated: 2023/09/29 15:58:32 by acarlott         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
 CC = c++
 
-HEADER_PATH = ./include
+HEADER_PATH = ./include/
 HEADER_FILES = Weapon.hpp HumanA.hpp HumanB.hpp
 HEADERS = $(addprefix $(HEADER_PATH), $(HEADER_FILES))
 

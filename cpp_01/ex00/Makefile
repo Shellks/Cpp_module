@@ -6,7 +6,7 @@
 #    By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 11:03:32 by acarlott          #+#    #+#              #
-#    Updated: 2023/09/27 11:31:28 by acarlott         ###   ########lyon.fr    #
+#    Updated: 2023/09/29 16:05:13 by acarlott         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
 CC = c++
 
-HEADER = ./include
+HEADER_PATH = ./include/
+HEADER_FILES = Zombie.hpp
+HEADERS = $(addprefix $(HEADER_PATH), $(HEADER_FILES))
 
 SRCS =	core/main.cpp \
 		core/Zombie.cpp \
@@ -25,8 +27,8 @@ SRCS =	core/main.cpp \
 
 OBJS = ${SRCS:.cpp=.o}
 
-./core/%.o:	./core/%.cpp Makefile ${HEADER}/Zombie.hpp
-	${CC} ${CFLAGS} -I${HEADER} -c $< -o $@ 
+./core/%.o:	./core/%.cpp ${HEADERS}
+	${CC} ${CFLAGS} -I${HEADER_PATH} -c $< -o $@ 
 
 all : ${NAME}
 
@@ -48,3 +50,4 @@ re : fclean all
 .SILENT:
 
 .PHONY: all clean fclean re
+

@@ -5,24 +5,23 @@
 #                                                     +:+ +:+         +:+      #
 #    By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/09/27 21:43:10 by acarlott          #+#    #+#              #
-#    Updated: 2023/09/29 16:01:47 by acarlott         ###   ########lyon.fr    #
+#    Created: 2023/09/29 10:01:01 by acarlott          #+#    #+#              #
+#    Updated: 2023/09/29 15:51:09 by acarlott         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Moar_brainz!
+NAME = Sed_is_for_losers
 
 CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
 CC = c++
 
 HEADER_PATH = ./include/
-HEADER_FILES = Zombie.hpp
+HEADER_FILES = Filename.hpp
 HEADERS = $(addprefix $(HEADER_PATH), $(HEADER_FILES))
 
 SRCS =	core/main.cpp \
-		core/zombie.cpp \
-		core/zombieHorde.cpp \
+		core/FileName.cpp \
 
 OBJS = ${SRCS:.cpp=.o}
 
@@ -32,7 +31,7 @@ OBJS = ${SRCS:.cpp=.o}
 all : ${NAME}
 
 ${NAME} : ${OBJS}
-	echo "\033[1;34mCreate: \033[1;33mMoar_brainz!"
+	echo "\033[1;34mCreate: \033[1;33mSed_is_for_losers"
 	${CC} ${CFLAGS} ${OBJS} -o ${NAME}
 	echo "\033[1;32mSucces !"
 
@@ -49,4 +48,3 @@ re : fclean all
 .SILENT:
 
 .PHONY: all clean fclean re
-

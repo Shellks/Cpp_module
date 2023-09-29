@@ -5,31 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/28 18:18:50 by acarlott          #+#    #+#             */
-/*   Updated: 2023/09/29 09:56:25 by acarlott         ###   ########lyon.fr   */
+/*   Created: 2023/09/29 10:02:18 by acarlott          #+#    #+#             */
+/*   Updated: 2023/09/29 13:10:24 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/HumanA.hpp"
-#include "../include/HumanB.hpp"
+#include "../include/Filename.hpp"
 
-int main()
+int	main(int argc, char **argv)
 {
-	{
-		Weapon club = Weapon("crude spiked club");
-		HumanA bob("Bob", club);
-		bob.attack();
-		club.setType("some other type of club");
-		bob.attack();
+	int	status;
+	
+	if (argc != 4) {
+		std::cout << "wrong number of parameters, three expected !" << std::endl;
+		return ERR_PARAM;
 	}
-	{
-		Weapon club = Weapon("crude spiked club");
-		HumanB jim("Jim");
-		jim.attack();
-		jim.setWeapon(club);
-		jim.attack();
-		club.setType("some other type of club");
-		jim.attack();
+	Filename	Filename(argv[1], argv[2], argv[3]);
+	
+	status = Filename.ReadFilename();
+	switch (status) {
+		case ERR_PARAM:
+			return ERR_PARAM;
+		case ERR_READ:
+			return ERR_READ;
+		case ERR_WRITE:
+			return ERR_WRITE;
 	}
-	return 0;
+	return SUCCES;
 }

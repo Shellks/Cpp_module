@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 21:14:14 by acarlott          #+#    #+#             */
-/*   Updated: 2023/09/28 17:31:37 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/09/29 16:03:20 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(void)
 	if (!std::cin.good() || std::cin.eof())
 		return 0;
 	std::cout << std::endl;
-	std::cout << "How many ? :" << std::flush;
+	std::cout << "How many ? : " << std::flush;
 	std::cin >> N;
 	if (!std::cin.good() || std::cin.eof())
 		return 0;
