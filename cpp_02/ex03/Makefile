@@ -6,7 +6,7 @@
 #    By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 11:33:18 by acarlott          #+#    #+#              #
-#    Updated: 2023/10/04 18:50:20 by acarlott         ###   ########lyon.fr    #
+#    Updated: 2023/10/05 11:32:43 by acarlott         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,13 @@ CFLAGS = -std=c++98 -Wall -Wextra -Werror
 CC = c++
 
 HEADER_PATH = ./include/
-HEADER_FILES = Fixed.hpp
+HEADER_FILES = Fixed.hpp Point.hpp
 HEADERS = $(addprefix $(HEADER_PATH), $(HEADER_FILES))
 
 SRCS =	core/main.cpp \
 		core/Fixed.cpp \
+		core/Point.cpp \
+		core/bsp.cpp
 
 OBJS = ${SRCS:.cpp=.o}
 

@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 11:36:54 by acarlott          #+#    #+#             */
-/*   Updated: 2023/10/04 18:33:44 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 17:27:55 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ bool	Fixed::operator==(Fixed const& src) const {
 }
 
 bool	Fixed::operator!=(Fixed const& src) const {
-	return (this->_FixedValue == src.getRawBits());
+	return (this->_FixedValue != src.getRawBits());
 }
 
 Fixed&	Fixed::operator++(void) {

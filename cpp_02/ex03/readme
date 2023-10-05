@@ -1,0 +1,43 @@
+Method:
+
+	Shoelace triangle area formula or vector product method.
+
+Example:
+
+Input: A = (0, 0), B = (5, 10), C = (10, 0), P(2, 5)
+Is inside !
+Schema:
+              B(5,10)
+                / \
+               /   \
+              /     \
+             /   P   \
+            /         \
+     A(0,0) ----------- C(10,0)
+
+Input: A = (0, 0), B = (5, 10), C = (10, 0), P(15, 2)
+is outside !
+Schema:
+              B(5,10)
+                / \
+               /   \
+              /     \
+             /       \      P
+            /         \
+     A(0,0) ----------- C(10,0) 
+
+Solution: 
+Let the coordinates of the three corners be (x1, y1), (x2, y2), and (x3, y3). And coordinates of the given point P be (x, y)
+
+    Calculate the area of the given triangle, i.e., the area of the triangle ABC in the above diagram. 
+    Area A = [ x1(y2 – y3) + x2(y3 – y1) + x3(y1-y2)]/2 
+    Calculate the area of the triangle PAB. We can use the same formula for this. Let this area be A1. 
+    Calculate the area of the triangle PBC. Let this area be A2. 
+    Calculate the area of the triangle PAC. Let this area be A3. 
+    If P lies inside the triangle, then A1 + A2 + A3 must be equal to A. 
+
+lien : 
+
+https://en.wikipedia.org/wiki/Shoelace_formula
+https://www.geeksforgeeks.org/binary-space-partitioning/
+https://www.geeksforgeeks.org/check-whether-a-given-point-lies-inside-a-triangle-or-not/

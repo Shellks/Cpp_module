@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point.hpp                                          :+:      :+:    :+:   */
+/*   Point.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:50:38 by acarlott          #+#    #+#             */
-/*   Updated: 2023/10/04 19:16:10 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/10/05 14:05:19 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 class Point
 {
 	private:
-		Fixed const&	_x;
-		Fixed const&	_y;
+		Fixed const	_x;
+		Fixed const	_y;
+
 	
 	public:
 		Point(void);
@@ -32,5 +33,8 @@ class Point
 		Fixed	getY(void) const;
 		Point&	operator=(Point const& src);
 };
+
+bool	bsp( Point const a, Point const b, Point const c, Point const point);
+Fixed	getArea(Point const* a, Point const* b, Point const* c);
 
 #endif
