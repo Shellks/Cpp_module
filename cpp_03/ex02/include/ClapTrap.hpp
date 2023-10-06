@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:41:27 by acarlott          #+#    #+#             */
-/*   Updated: 2023/10/06 15:57:41 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/10/06 15:58:14 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 class ClapTrap
 {
-
 	public:
 		ClapTrap(void);
 		ClapTrap(std::string name);
@@ -40,9 +39,6 @@ class ClapTrap
 		unsigned int	_HitPoints;
 		unsigned int	_EnergyPoints;
 		unsigned int	_AttackDamage;
-
-	private:
-	
 	};
 
 #endif

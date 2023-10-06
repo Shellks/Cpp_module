@@ -6,11 +6,12 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:41:48 by acarlott          #+#    #+#             */
-/*   Updated: 2023/10/06 16:27:08 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/10/06 16:28:35 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ScavTrap.hpp"
+#include "../include/FragTrap.hpp"
 
 static	bool	isdead(ScavTrap* scav, ClapTrap* bandit) {
 	if (scav->getHitPoints() == 0 || bandit->getHitPoints() == 0)
@@ -20,22 +21,22 @@ static	bool	isdead(ScavTrap* scav, ClapTrap* bandit) {
 
 int	main(void) 
 {
-	ScavTrap	scav("Scavington");
-	ClapTrap	bandit("Pandora bandit");
+	ScavTrap	scav("SC4V-TP");
+	FragTrap	frag("FR4G-TP");
 
-	bandit.setAttackDamage(4);
 	scav.guardGate();
-	while (scav.getEnergyPoints() && bandit.getEnergyPoints()) {
-		bandit.berepaired(15);
-		scav.attack(bandit.getName());
-		bandit.takedamage(scav.getAttackDamage());
-		if (isdead(&scav, &bandit) == true)
+	while (scav.getEnergyPoints() != 0 || frag.getEnergyPoints() != 0) {
+		scav.attack(frag.getName());
+		frag.takedamage(scav.getAttackDamage());
+		if (isdead(&scav, &frag) == true)
 			break ;
-		bandit.attack(scav.getName());
-		scav.takedamage(bandit.getAttackDamage());
-		if (isdead(&scav, &bandit) == true)
+		frag.berepaired(10);
+		frag.attack(scav.getName());
+		scav.takedamage(frag.getAttackDamage());
+		if (isdead(&scav, &frag) == true)
 			break ;
 		scav.berepaired(10);
 	}
+	frag.highFivesGuys();
 	return 0;
 }

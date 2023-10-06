@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:41:41 by acarlott          #+#    #+#             */
-/*   Updated: 2023/10/05 20:01:42 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/10/06 11:57:29 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ ClapTrap::ClapTrap(void) : _Name("Unnamed"), _HitPoints(10), _EnergyPoints(10), 
 
 ClapTrap::ClapTrap(std::string name) : _Name(name), _HitPoints(10), _EnergyPoints(10), _AttackDamage(0) {
 	std::cout << "ClapTrap "<< this->_Name << " constructor called !" << std::endl;
+	return ;
+}
+
+ClapTrap::ClapTrap(ClapTrap const& src) {
+	std::cout << "ClapTrap "<< this->_Name << " copy constructor called !" << std::endl;
+	*this = src;
 	return ;
 }
 
