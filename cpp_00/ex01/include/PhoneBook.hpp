@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 15:26:19 by acarlott          #+#    #+#             */
-/*   Updated: 2023/09/26 14:37:20 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/09 15:12:32 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ private :
 	void	_introduction(void) const;
 	void	_getcontact(void) const;
 	void	_replacecontact(void);
-	
+
 };
 
 #endif

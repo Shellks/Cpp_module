@@ -6,7 +6,7 @@
 #    By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/15 13:19:01 by acarlott          #+#    #+#              #
-#    Updated: 2023/09/26 13:16:10 by acarlott         ###   ########lyon.fr    #
+#    Updated: 2023/11/09 12:51:58 by acarlott         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,19 +18,19 @@ CC = c++
 all : ${NAME}
 
 ${NAME} : ${OBJS}
-	echo "\033[1;34m\nCompiling: \033[1;33m megaphone"
+	echo "\033[1;34mCompiling: \033[1;33m megaphone"
 	${CC} ${CFLAGS} megaphone.cpp -o ${NAME}
-	echo "\033[1;32mSucces !\n"
+	echo "\033[1;32mSucces !"
 
 clean :
-	echo "\033[1;31mDelete executable"
-	${RM} ${NAME} 
-	echo "\033[1;32mSucces !\n"
+	echo "\033[1;31mDelete objs"
+	${RM} ${OBJS} 
+	echo "\033[1;32mSucces !"
 
-fclean:
+fclean: clean
 	echo "\033[1;31mDelete executable"
 	${RM} ${NAME}
-	echo "\033[1;32mSucces !\n"
+	echo "\033[1;32mSucces !"
 
 re : fclean all
 

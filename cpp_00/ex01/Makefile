@@ -6,7 +6,7 @@
 #    By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/15 15:26:08 by acarlott          #+#    #+#              #
-#    Updated: 2023/09/27 11:31:40 by acarlott         ###   ########lyon.fr    #
+#    Updated: 2023/11/09 12:54:04 by acarlott         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRCS =	core/Main.cpp \
 
 OBJS = ${SRCS:.cpp=.o}
 
-./core/%.o:	./core/%.cpp Makefile ${HEADER}/Contact.hpp ${HEADER}/PhoneBook.hpp
+./core/%.o:	./core/%.cpp ${HEADER}/Contact.hpp ${HEADER}/PhoneBook.hpp
 	${CC} ${CFLAGS} -I${HEADER} -c $< -o $@ 
 
 all : ${NAME}

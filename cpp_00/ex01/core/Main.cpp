@@ -6,14 +6,14 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 10:55:28 by acarlott          #+#    #+#             */
-/*   Updated: 2023/09/26 14:19:44 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/09 14:57:54 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/PhoneBook.hpp"
 
-int	main(void) {
-	
+int	main(void)
+{
 	PhoneBook repertory;
 	std::string	buf;
 

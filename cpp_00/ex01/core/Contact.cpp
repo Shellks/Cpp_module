@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 15:26:10 by acarlott          #+#    #+#             */
-/*   Updated: 2023/09/26 14:38:22 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/09 14:57:38 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,15 @@ Contact::~Contact(void) {
 	return ;
 }
 
-std::string	Contact::_checklength(std::string str) const {
+std::string	Contact::_checklength(std::string str) const
+{
 	if (str.length() > 10)
 		return (str.substr(0, 9) + ".");
 	return (str);
 }
 
-void	Contact::printcontact(void) const {
+void	Contact::printcontact(void) const
+{
 	std::cout << "firstname : " << this->_firstname << std::endl;
 	std::cout << "lastname : " << this->_lastname << std::endl;
 	std::cout << "nickname : " << this->_nickname << std::endl;
@@ -35,16 +37,18 @@ void	Contact::printcontact(void) const {
 	std::cout << "phone number : " << this->_phonenumber << std::endl;
 }
 
-void	Contact::printsearchlist(void) const {
+void	Contact::printsearchlist(void) const
+{
 	std::cout << "|" << std::setw(10) << this->_checklength(this->_firstname);
 	std::cout << "|" << std::setw(10) << this->_checklength(this->_lastname);
 	std::cout << "|" << std::setw(10) << this->_checklength(this->_nickname);
 	std::cout << "|" << std::endl;
 }
 
-static std::string	trim_input(std::string str) {
-	int			end;
+static std::string	trim_input(std::string str)
+{
 	int			start;
+	int			end;
 	std::string	totrim = " \t";
 	
 	start = str.find_first_not_of(totrim);
@@ -54,7 +58,8 @@ static std::string	trim_input(std::string str) {
 	return (str);
 }
 
-std::string	Contact::getinput() {
+std::string	Contact::getinput()
+{
 	std::string	str;
 	bool		value = false;
 
@@ -81,7 +86,8 @@ std::string	Contact::getinput() {
 	return (str);
 }
 
-void	Contact::initcontact(void) {
+void	Contact::initcontact(void)
+{
 	std::cin.clear();
 	std::cout << "Enter your firstname : ";
 	this->_firstname = this->getinput();
