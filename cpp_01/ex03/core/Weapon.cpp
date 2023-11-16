@@ -6,19 +6,17 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 17:53:51 by acarlott          #+#    #+#             */
-/*   Updated: 2023/09/28 21:09:19 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/16 13:30:11 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Weapon.hpp"
 
-Weapon::Weapon(std::string Weapon) : _type(Weapon)
-{
+Weapon::Weapon(std::string Weapon) : _type(Weapon) {
 	return ;
 }
 
-Weapon::~Weapon(void)
-{
+Weapon::~Weapon(void) {
 	return ;
 }
 

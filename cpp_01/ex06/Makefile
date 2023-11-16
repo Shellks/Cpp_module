@@ -6,11 +6,11 @@
 #    By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/29 13:20:49 by acarlott          #+#    #+#              #
-#    Updated: 2023/09/29 15:38:26 by acarlott         ###   ########lyon.fr    #
+#    Updated: 2023/11/16 14:42:18 by acarlott         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = HarlFilter
+NAME = harlFilter
 
 CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
@@ -31,7 +31,7 @@ OBJS = ${SRCS:.cpp=.o}
 all : ${NAME}
 
 ${NAME} : ${OBJS}
-	echo "\033[1;34mCreate: \033[1;33mHarlFilter"
+	echo "\033[1;34mCreate: \033[1;33mharlFilter"
 	${CC} ${CFLAGS} ${OBJS} -o ${NAME}
 	echo "\033[1;32mSucces !"
 

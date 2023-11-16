@@ -6,15 +6,20 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 18:18:50 by acarlott          #+#    #+#             */
-/*   Updated: 2023/09/29 09:56:25 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/16 14:06:18 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/HumanA.hpp"
 #include "../include/HumanB.hpp"
 
-int main()
+int main(int argc, char **argv)
 {
+	(void)argv;
+	if (argc != 1) {
+		std::cout << "No arguments are expected at launch" << std::endl;
+		return (1);
+	}
 	{
 		Weapon club = Weapon("crude spiked club");
 		HumanA bob("Bob", club);

@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 15:26:16 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/09 14:57:02 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/09 15:41:32 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ PhoneBook::~PhoneBook(void) {
 	return ;
 }
 
-int	PhoneBook::getindex(void) const 
+int	PhoneBook::getindex(void) const
 {
 	return PhoneBook::_index;
 }
 
-void	PhoneBook::_getcontact(void) const 
+void	PhoneBook::_getcontact(void) const
 {
 	bool	flag = false;
 	std::string	str_index;
@@ -55,7 +55,7 @@ void	PhoneBook::_getcontact(void) const
 	}
 }
 
-void	PhoneBook::searchcontact(void) const 
+void	PhoneBook::searchcontact(void) const
 {
 	if (this->_index != 0) {
 		std::cout << "|" << std::setw(10) << "index";
@@ -73,13 +73,13 @@ void	PhoneBook::searchcontact(void) const
 		std::cout << "no contact saved, add a new one with 'ADD'" << std::endl;
 }
 
-void		PhoneBook::_replacecontact(void) 
+void		PhoneBook::_replacecontact(void)
 {
 	for (int i = 0; i != 7; i++)
 		this->_contacts[i] = this->_contacts[i + 1];
 }
 
-void	PhoneBook::addcontact(void) 
+void	PhoneBook::addcontact(void)
 {
 	if (this->_index < 8) {
 		this->_contacts[_index].initcontact();
@@ -94,7 +94,7 @@ void	PhoneBook::addcontact(void)
 	std::cout << std::endl << "Contact successfully added !" << std::endl;
 }
 
-void	PhoneBook::_introduction(void) const 
+void	PhoneBook::_introduction(void) const
 {
 	std::cout << std::endl << "          Welcome to your awesome PhoneBook !" << std::endl << std::endl;
 	std::cout << "---NOTICE---" << std::endl;

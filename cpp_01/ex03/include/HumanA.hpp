@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 18:01:31 by acarlott          #+#    #+#             */
-/*   Updated: 2023/09/29 15:58:55 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/16 13:27:38 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@
 
 class HumanA
 {
-private:
-	std::string	_name;
-	Weapon&		_Weapon;
+	private:
+		std::string	_name;
+		Weapon&		_Weapon;
 
-public:
-	HumanA(std::string name, Weapon& club);
-	~HumanA(void);
+	public:
+		HumanA(std::string name, Weapon& club);
+		~HumanA(void);
 
-	void	attack(void) const;
+		void	attack(void) const;
 };
 
 #endif

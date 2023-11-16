@@ -6,14 +6,19 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 17:34:44 by acarlott          #+#    #+#             */
-/*   Updated: 2023/09/28 17:46:53 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/16 14:04:08 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 
-int	main(void)
+int	main(int argc, char **argv)
 {
+	(void)argv;
+	if (argc != 1) {
+		std::cout << "No arguments are expected at launch" << std::endl;
+		return (1);
+	}
 	std::string		str = "HI THIS IS BRAIN";
 	std::string*	ptrstr = &str;
 	std::string&	refstr = str;

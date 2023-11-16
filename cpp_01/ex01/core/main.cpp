@@ -6,39 +6,34 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 21:14:14 by acarlott          #+#    #+#             */
-/*   Updated: 2023/09/29 16:03:20 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/16 14:03:33 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Zombie.hpp"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	std::string	name;
 	int			N;
 
-	std::cout << "Give a name for your horde : " << std::flush;
-	std::cin >> name;
-	if (!std::cin.good() || std::cin.eof())
-		return 0;
-	std::cout << std::endl;
-	std::cout << "How many ? : " << std::flush;
-	std::cin >> N;
-	if (!std::cin.good() || std::cin.eof())
-		return 0;
-	if (N < 1)
-		return (0);
-	Zombie	*Horde = zombieHorde(N, name);
-	if (!Horde) 
-	{
-		std::cout << "Alloc error" << std::endl;
+	(void)argv;
+	if (argc != 1) {
+		std::cout << "No arguments are expected at launch" << std::endl;
 		return (1);
 	}
-	for(int i = 0; i < N; i++) 
-	{
+	name = "Dead Walkers";
+	N = 10;
+	Zombie	*Horde = zombieHorde(N, name);
+	if (!Horde) {
+		std::cout << "Allocation failure !" << std::endl;
+		return (1);
+	}
+	for(int i = 0; i < N; i++) {
 		Horde[i].announce();
 		std::cout << "Adress: " << &Horde[i] << std::endl;
 	}
+	std::cout << "The Zombie horde has " << N << " Members" << std::endl;
 	delete [] Horde;
 	return (0);
 }

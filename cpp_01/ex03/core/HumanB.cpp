@@ -6,20 +6,18 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 18:06:00 by acarlott          #+#    #+#             */
-/*   Updated: 2023/09/29 09:55:12 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/16 13:29:46 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/HumanB.hpp"
 
-HumanB::HumanB(std::string name) : _name(name)
-{
+HumanB::HumanB(std::string name) : _name(name) {
 	this->_Weapon = NULL;
 	return ;
 }
 
-HumanB::~HumanB(void)
-{
+HumanB::~HumanB(void) {
 	return ;
 }
 
@@ -34,6 +32,6 @@ void	HumanB::attack(void) const
 	if (this->_Weapon)
 		std::cout << this->_name << " attacks with their " << this->_Weapon->getType();
 	else
-		std::cout << this->_name << " Have no weapons ! can't attack..";
+		std::cout << this->_name << " have no weapons ! can't attack..";
 	std::cout << std::endl;
 }

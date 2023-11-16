@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 13:23:52 by acarlott          #+#    #+#             */
-/*   Updated: 2023/09/29 15:49:10 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/16 14:36:44 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void Harl::complain( std::string level )
 	std::string	complain[4] = {"debug", "info", "warning", "error"};
 
 	for (int i = 0; i < 4; i++) {
-		if (complain[i] == level)
+		if (!complain[i].compare(level))
 			(this->*functiontab[i])();
 	}
 }
