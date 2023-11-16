@@ -6,11 +6,11 @@
 #    By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 11:33:18 by acarlott          #+#    #+#              #
-#    Updated: 2023/10/04 12:21:22 by acarlott         ###   ########lyon.fr    #
+#    Updated: 2023/11/16 17:50:09 by acarlott         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = First_steps_useful_class
+NAME = First_Steps_Useful_Class
 
 CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
@@ -31,7 +31,7 @@ OBJS = ${SRCS:.cpp=.o}
 all : ${NAME}
 
 ${NAME} : ${OBJS}
-	echo "\033[1;34mCreate: \033[1;33mFirst_steps_useful_class"
+	echo "\033[1;34mCreate: \033[1;33mFirst_Steps_Useful_Class"
 	${CC} ${CFLAGS} ${OBJS} -o ${NAME}
 	echo "\033[1;32mSucces !"
 

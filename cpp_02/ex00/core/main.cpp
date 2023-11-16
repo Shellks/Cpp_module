@@ -6,14 +6,13 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 11:36:21 by acarlott          #+#    #+#             */
-/*   Updated: 2023/10/04 12:16:43 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/16 17:46:43 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Fixed.hpp"
 
-int main( void ) 
-{
+int main( void ) {
 	Fixed a;
 	Fixed b( a );
 	Fixed c;
