@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 11:36:54 by acarlott          #+#    #+#             */
-/*   Updated: 2023/10/04 16:09:04 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/17 09:43:31 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Fixed::Fixed(void) : _FixedValue(0) {
 	return ;
 }
 
-Fixed::Fixed(Fixed const& src) : _FixedValue(0) {
+Fixed::Fixed(Fixed const& src) {
 	std::cout << "Copy constructor called" << std::endl;
 	*this = src;
 	return ;

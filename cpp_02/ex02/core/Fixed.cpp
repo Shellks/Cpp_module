@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 11:36:54 by acarlott          #+#    #+#             */
-/*   Updated: 2023/10/05 16:49:52 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/17 10:17:46 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Fixed::Fixed(void) : _FixedValue(0) {
 	return ;
 }
 
-Fixed::Fixed(Fixed const& src) : _FixedValue(0) {
+Fixed::Fixed(Fixed const& src) {
 	*this = src;
 	return ;
 }

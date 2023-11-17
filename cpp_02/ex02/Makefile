@@ -6,11 +6,11 @@
 #    By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 11:33:18 by acarlott          #+#    #+#              #
-#    Updated: 2023/10/04 15:30:59 by acarlott         ###   ########lyon.fr    #
+#    Updated: 2023/11/17 09:47:11 by acarlott         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Now_we_can_talk
+NAME = Now_We_Can_Talk
 
 CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
@@ -31,7 +31,7 @@ OBJS = ${SRCS:.cpp=.o}
 all : ${NAME}
 
 ${NAME} : ${OBJS}
-	echo "\033[1;34mCreate: \033[1;33mNow_we_can_talk"
+	echo "\033[1;34mCreate: \033[1;33mNow_We_Can_Talk"
 	${CC} ${CFLAGS} ${OBJS} -o ${NAME}
 	echo "\033[1;32mSucces !"
 
