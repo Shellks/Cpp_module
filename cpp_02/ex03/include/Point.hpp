@@ -6,11 +6,10 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:50:38 by acarlott          #+#    #+#             */
-/*   Updated: 2023/10/05 14:05:19 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/17 16:16:45 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
 #ifndef POINT_HPP
 # define POINT_HPP
 

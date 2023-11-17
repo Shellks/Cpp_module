@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 18:55:54 by acarlott          #+#    #+#             */
-/*   Updated: 2023/10/05 14:05:04 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/17 16:17:12 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ Point::~Point(void) {
 }
 
 Point&	Point::operator=(Point const& src) {
-	(Fixed)this->getX() = src.getX();
-	(Fixed)this->getY() = src.getY();
+	this->getX() = src.getX();
+	this->getY() = src.getY();
 	return *this;
 }
 
