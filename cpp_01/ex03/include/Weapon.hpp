@@ -6,11 +6,10 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 17:52:40 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/16 13:25:17 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/17 09:12:01 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
 #ifndef WEAPON_HPP
 # define WEAPON_HPP
 

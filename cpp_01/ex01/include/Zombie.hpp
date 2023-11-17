@@ -6,11 +6,10 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 21:12:41 by acarlott          #+#    #+#             */
-/*   Updated: 2023/09/27 21:44:09 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/17 09:11:32 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
 #ifndef ZOMBIE_HPP
 #define ZOMBIE_HPP
 

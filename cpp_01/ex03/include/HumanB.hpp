@@ -6,11 +6,10 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 18:02:28 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/16 13:27:22 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/17 09:11:58 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
 #ifndef HumanB_HPP
 # define HumanB_HPP
 

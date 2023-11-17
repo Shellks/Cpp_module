@@ -6,11 +6,10 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 18:01:31 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/16 13:27:38 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/17 09:11:54 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
 #ifndef HumanA_HPP
 # define HumanA_HPP
 

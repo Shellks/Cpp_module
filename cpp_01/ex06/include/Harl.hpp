@@ -6,11 +6,10 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 13:23:02 by acarlott          #+#    #+#             */
-/*   Updated: 2023/09/29 13:26:57 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/17 09:12:29 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
 #ifndef HARL_HPP
 # define HARL_HPP
 
