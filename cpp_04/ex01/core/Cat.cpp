@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 13:06:08 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/22 15:33:18 by acarlott         ###   ########lyon.fr   */
+/*   Created: 2023/11/22 13:06:11 by acarlott          #+#    #+#             */
+/*   Updated: 2023/11/22 16:18:25 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "../include/Cat.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Dog::Dog() : Animal("Dog") {
+Cat::Cat() : Animal("Cat") {
+	this->_brain = new Brain();
 	std::cout << "Cat default constructor called!" << std::endl;
 }
 
-Dog::Dog( const Dog & src ) : Animal(src) {
+Cat::Cat( const Cat & src ) : Animal(src) {
 	std::cout << "Cat copy constructor called!" << std::endl;
 	*this = src;
 }
@@ -29,22 +30,24 @@ Dog::Dog( const Dog & src ) : Animal(src) {
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-Dog::~Dog() {
+Cat::~Cat() {
+	delete _brain;
+	std::cout << "Cat destructor called!" << std::endl;
 }
 
 /*
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Dog &				Dog::operator=( Dog const & src ) {
-	if ( this != &src ) {
-		this->type = src.type;
-	}
+Cat &	Cat::operator=( Cat const & src ) {
+	delete this->_brain;
+	this->type = src.getType();
+	this->_brain = new Brain(*src._brain);
 	return *this;
 }
 
 /* ************************************************************************** */
 
-void	Dog::makeSound(void) const {
-	std::cout << "Wouff Wouff !" << std::endl;
+void	Cat::makeSound(void) const {
+	std::cout << "Meowww !" << std::endl;
 }

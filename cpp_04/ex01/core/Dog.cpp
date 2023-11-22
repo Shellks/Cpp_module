@@ -6,22 +6,23 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:06:08 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/22 15:33:18 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/22 16:18:06 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "../include/Dog.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
 Dog::Dog() : Animal("Dog") {
-	std::cout << "Cat default constructor called!" << std::endl;
+	this->_brain = new Brain();
+	std::cout << "Dog default constructor called!" << std::endl;
 }
 
 Dog::Dog( const Dog & src ) : Animal(src) {
-	std::cout << "Cat copy constructor called!" << std::endl;
+	std::cout << "Dog copy constructor called!" << std::endl;
 	*this = src;
 }
 
@@ -30,6 +31,8 @@ Dog::Dog( const Dog & src ) : Animal(src) {
 */
 
 Dog::~Dog() {
+	delete this->_brain;
+	std::cout << "Dog destructor called!" << std::endl;
 }
 
 /*
@@ -37,9 +40,9 @@ Dog::~Dog() {
 */
 
 Dog &				Dog::operator=( Dog const & src ) {
-	if ( this != &src ) {
-		this->type = src.type;
-	}
+	delete this->_brain;
+	this->type = src.getType();
+	this->_brain = new Brain(*src._brain);
 	return *this;
 }
 

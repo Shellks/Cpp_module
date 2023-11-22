@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 13:06:03 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/22 15:35:32 by acarlott         ###   ########lyon.fr   */
+/*   Created: 2023/11/22 12:55:00 by acarlott          #+#    #+#             */
+/*   Updated: 2023/11/22 14:49:44 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef ANIMAL_HPP
+# define ANIMAL_HPP
 
-# include "Animal.hpp"
+# include <iostream>
+# include <string>
 
-class Dog : public Animal
+class Animal
 {
+	public :
+		Animal();
+		Animal( std::string const type_name );
+		Animal( Animal const& src );
+		virtual ~Animal();
 
-	public:
+		Animal&			operator=( Animal const& src );
+		std::string		getType(void) const;
+		virtual void	makeSound(void) const;
 
-		Dog();
-		Dog( Dog const & src );
-		~Dog();
-
-		Dog &	operator=( Dog const & src );
-		void	makeSound(void) const;
-
+	protected :
+		std::string	type;
 };
 
 #endif
