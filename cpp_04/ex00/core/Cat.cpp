@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:06:11 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/22 14:39:52 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/22 15:08:17 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@
 */
 
 Cat::Cat() : Animal("Cat") {
+	std::cout << "Cat default constructor called!" << std::endl;
 }
 
 Cat::Cat( const Cat & src ) : Animal(src) {
+	std::cout << "Cat copy constructor called!" << std::endl;
 	*this = src;
 }
 
@@ -28,6 +30,7 @@ Cat::Cat( const Cat & src ) : Animal(src) {
 */
 
 Cat::~Cat() {
+	std::cout << "Cat destructor called!" << std::endl;
 }
 
 /*

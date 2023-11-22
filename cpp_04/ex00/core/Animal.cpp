@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:06:15 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/22 14:33:43 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/22 15:08:24 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@
 */
 
 Animal::Animal() : type("None") {
+	std::cout << "Animal default constructor called!" << std::endl;
 }
 
 Animal::Animal( std::string const type_name ) : type(type_name) {
+	std::cout << "Animal string constructor called!" << std::endl;
 }
 
 Animal::Animal( const Animal & src ) {
+	std::cout << "Animal copy constructor called!" << std::endl;
 	*this = src;
 }
 
@@ -31,6 +34,7 @@ Animal::Animal( const Animal & src ) {
 */
 
 Animal::~Animal() {
+		std::cout << "Animal destructor called!" << std::endl;
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 14:36:18 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/22 14:53:53 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/22 15:11:07 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@
 */
 
 WrongCat::WrongCat() : WrongAnimal("WrongCat"){
+	std::cout << "WrongCat default constructor called!" << std::endl;
 }
 
 WrongCat::WrongCat( const WrongCat & src ) : WrongAnimal(src) {
+	std::cout << "WrongCat copy constructor called!" << std::endl;
 	*this = src;
 }
 
@@ -29,6 +31,7 @@ WrongCat::WrongCat( const WrongCat & src ) : WrongAnimal(src) {
 */
 
 WrongCat::~WrongCat() {
+	std::cout << "WrongCat destructor called!" << std::endl;
 }
 
 
