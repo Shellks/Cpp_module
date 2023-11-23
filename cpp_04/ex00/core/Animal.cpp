@@ -6,11 +6,11 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:06:15 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/22 15:08:24 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/23 16:53:11 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "../include/Animal.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------

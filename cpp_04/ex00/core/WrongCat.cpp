@@ -6,11 +6,11 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 14:36:18 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/22 15:11:07 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/23 16:52:21 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "WrongCat.hpp"
+#include "../include/WrongCat.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
