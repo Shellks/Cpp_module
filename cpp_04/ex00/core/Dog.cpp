@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:06:08 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/22 15:33:18 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/23 13:01:17 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ Dog::Dog( const Dog & src ) : Animal(src) {
 */
 
 Dog::~Dog() {
+	std::cout << "Dog destructor called !" << std::endl;
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:06:03 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/22 16:01:46 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/23 16:01:53 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,14 @@ class Dog : public Animal
 	public:
 		Dog();
 		Dog( Dog const & src );
+		Dog( Animal const & src );
 		~Dog();
 
-		Dog &	operator=( Dog const & src );
+		Dog &		operator=( Dog const & src );
+		Animal &	operator=( Animal const & src );
+		
 		void	makeSound(void) const;
+		Brain	*getBrain(void) const;
 
 	private:
 		Brain	*_brain;

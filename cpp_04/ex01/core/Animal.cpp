@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:06:15 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/22 15:08:24 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/23 16:32:29 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ Animal::~Animal() {
 */
 
 Animal &	Animal::operator=( Animal const & src ) {
-	if ( this != &src ) {
-		this->type = src.getType();
+	if (this != &src) {
+		this->type = src.type;
 	}
 	return *this;
 }
@@ -56,4 +56,9 @@ std::string	Animal::getType(void) const {
 
 void	Animal::makeSound(void) const {
 	std::cout << "a strange & indescribable animal sound is heard !" << std::endl;
+}
+
+Brain	*Animal::getBrain(void) const {
+	std::cout << "No brain found.. wtf ??" << std::endl;
+	return (NULL);
 }

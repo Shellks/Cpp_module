@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:06:08 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/22 16:18:06 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/23 16:39:09 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,14 @@ Dog::Dog() : Animal("Dog") {
 
 Dog::Dog( const Dog & src ) : Animal(src) {
 	std::cout << "Dog copy constructor called!" << std::endl;
-	*this = src;
+	this->type = src.getType();
+	this->_brain = new Brain(*src.getBrain());
+}
+
+Dog::Dog( const Animal & src ) : Animal(src) {
+	std::cout << "Dog copy constructor called!" << std::endl;
+	this->type = src.getType();
+	this->_brain = new Brain(*src.getBrain());
 }
 
 /*
@@ -39,10 +46,21 @@ Dog::~Dog() {
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Dog &				Dog::operator=( Dog const & src ) {
-	delete this->_brain;
-	this->type = src.getType();
-	this->_brain = new Brain(*src._brain);
+Animal	&Dog::operator=( Animal const & src ) {
+	if (this != &src) {
+		delete this->_brain;
+		this->type = src.getType();
+		this->_brain = new Brain(*src.getBrain());
+	}
+	return *this;
+}
+
+Dog	&Dog::operator=( Dog const & src ) {
+	if (this != &src) {
+		delete this->_brain;
+		this->type = src.getType();
+		this->_brain = new Brain(*src.getBrain());
+	}
 	return *this;
 }
 
@@ -50,4 +68,8 @@ Dog &				Dog::operator=( Dog const & src ) {
 
 void	Dog::makeSound(void) const {
 	std::cout << "Wouff Wouff !" << std::endl;
+}
+
+Brain	*Dog::getBrain(void) const {
+	return (this->_brain);
 }
