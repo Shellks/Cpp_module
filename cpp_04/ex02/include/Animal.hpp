@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 14:30:51 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/23 18:01:57 by acarlott         ###   ########lyon.fr   */
+/*   Created: 2023/11/22 12:55:00 by acarlott          #+#    #+#             */
+/*   Updated: 2023/11/23 17:46:21 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-# define WRONGANIMAL_HPP
+#ifndef ANIMAL_HPP
+# define ANIMAL_HPP
 
 # include <iostream>
 # include <string>
+# include "Brain.hpp"
 
-class WrongAnimal
+class Animal
 {
 	public :
-		WrongAnimal();
-		WrongAnimal( std::string const type_name );
-		WrongAnimal( WrongAnimal const& src );
-		~WrongAnimal();
+		Animal();
+		Animal( std::string const type_name );
+		Animal( Animal const& src );
+		virtual ~Animal();
 
-		WrongAnimal&	operator=( WrongAnimal const& src );
+		virtual Animal&			operator=( Animal const& src );
+		
 		std::string		getType(void) const;
-		void	makeSound(void) const;
+		virtual void	makeSound(void) const = 0;
+		virtual Brain	*getBrain(void) const = 0;
 
 	protected :
 		std::string	type;

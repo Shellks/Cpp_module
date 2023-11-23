@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 14:30:51 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/23 18:01:57 by acarlott         ###   ########lyon.fr   */
+/*   Created: 2023/11/22 15:20:09 by acarlott          #+#    #+#             */
+/*   Updated: 2023/11/23 13:14:42 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-# define WRONGANIMAL_HPP
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 
 # include <iostream>
 # include <string>
 
-class WrongAnimal
+class Brain
 {
-	public :
-		WrongAnimal();
-		WrongAnimal( std::string const type_name );
-		WrongAnimal( WrongAnimal const& src );
-		~WrongAnimal();
+	public:
+		Brain();
+		Brain( Brain const &src );
+		~Brain();
 
-		WrongAnimal&	operator=( WrongAnimal const& src );
-		std::string		getType(void) const;
-		void	makeSound(void) const;
+		std::string	ideas[100];
 
-	protected :
-		std::string	type;
+		Brain &operator=( Brain const &src );
+
+		std::string	getIdeas( int index ) const;
+		void		setIdeas( int index, std::string ideas );
 };
 
 #endif
