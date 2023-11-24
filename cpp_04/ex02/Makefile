@@ -6,7 +6,7 @@
 #    By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/22 12:53:51 by acarlott          #+#    #+#              #
-#    Updated: 2023/11/23 17:33:23 by acarlott         ###   ########lyon.fr    #
+#    Updated: 2023/11/24 10:27:12 by acarlott         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,13 @@ CFLAGS = -std=c++98 -Wall -Wextra -Werror
 CC = c++
 
 HEADER_PATH = ./include/
-HEADER_FILES = Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp Brain.hpp
+HEADER_FILES = AAnimal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp Brain.hpp
 HEADERS = $(addprefix $(HEADER_PATH), $(HEADER_FILES))
 
 SRCS =	core/main.cpp \
 		core/Dog.cpp \
 		core/Cat.cpp \
-		core/Animal.cpp \
+		core/AAnimal.cpp \
 		core/WrongCat.cpp \
 		core/WrongAnimal.cpp \
 		core/Brain.cpp

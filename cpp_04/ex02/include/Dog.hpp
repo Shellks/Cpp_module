@@ -6,33 +6,32 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:06:03 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/23 16:01:53 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/24 10:28:10 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOG_HPP
-# define DOG_HPP
+#define DOG_HPP
 
-# include "Animal.hpp"
-# include "Brain.hpp"
+#include "AAnimal.hpp"
+#include "Brain.hpp"
 
-class Dog : public Animal
+class Dog : public AAnimal
 {
-	public:
-		Dog();
-		Dog( Dog const & src );
-		Dog( Animal const & src );
-		~Dog();
+public:
+	Dog();
+	Dog(Dog const &src);
+	Dog(AAnimal const &src);
+	~Dog();
 
-		Dog &		operator=( Dog const & src );
-		Animal &	operator=( Animal const & src );
-		
-		void	makeSound(void) const;
-		Brain	*getBrain(void) const;
+	Dog &operator=(Dog const &src);
+	AAnimal &operator=(AAnimal const &src);
 
-	private:
-		Brain	*_brain;
+	void makeSound(void) const;
+	Brain *getBrain(void) const;
 
+private:
+	Brain *_brain;
 };
 
 #endif

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   AAnimal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,29 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef AAnimal_HPP
+#define AAnimal_HPP
 
-# include <iostream>
-# include <string>
-# include "Brain.hpp"
+#include <iostream>
+#include <string>
+#include "Brain.hpp"
 
-class Animal
+class AAnimal
 {
-	public :
-		Animal();
-		Animal( std::string const type_name );
-		Animal( Animal const& src );
-		virtual ~Animal();
+public:
+	AAnimal();
+	AAnimal(std::string const type_name);
+	AAnimal(AAnimal const &src);
+	virtual ~AAnimal();
 
-		virtual Animal&			operator=( Animal const& src );
-		
-		std::string		getType(void) const;
-		virtual void	makeSound(void) const = 0;
-		virtual Brain	*getBrain(void) const = 0;
+	virtual AAnimal &operator=(AAnimal const &src);
 
-	protected :
-		std::string	type;
+	std::string getType(void) const;
+	virtual void makeSound(void) const = 0;
+	virtual Brain *getBrain(void) const = 0;
+
+protected:
+	std::string type;
 };
 
 #endif

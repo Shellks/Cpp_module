@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   AAnimal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/Animal.hpp"
+#include "../include/AAnimal.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Animal::Animal() : type("None") {
-	std::cout << "Animal default constructor called!" << std::endl;
+AAnimal::AAnimal() : type("None")
+{
+	std::cout << "AAnimal default constructor called!" << std::endl;
 }
 
-Animal::Animal( std::string const type_name ) : type(type_name) {
-	std::cout << "Animal string constructor called!" << std::endl;
+AAnimal::AAnimal(std::string const type_name) : type(type_name)
+{
+	std::cout << "AAnimal string constructor called!" << std::endl;
 }
 
-Animal::Animal( const Animal & src ) {
-	std::cout << "Animal copy constructor called!" << std::endl;
+AAnimal::AAnimal(const AAnimal &src)
+{
+	std::cout << "AAnimal copy constructor called!" << std::endl;
 	*this = src;
 }
 
@@ -33,16 +36,19 @@ Animal::Animal( const Animal & src ) {
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-Animal::~Animal() {
-		std::cout << "Animal destructor called!" << std::endl;
+AAnimal::~AAnimal()
+{
+	std::cout << "AAnimal destructor called!" << std::endl;
 }
 
 /*
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Animal &	Animal::operator=( Animal const & src ) {
-	if (this != &src) {
+AAnimal &AAnimal::operator=(AAnimal const &src)
+{
+	if (this != &src)
+	{
 		this->type = src.type;
 	}
 	return *this;
@@ -50,15 +56,18 @@ Animal &	Animal::operator=( Animal const & src ) {
 
 /* ************************************************************************** */
 
-std::string	Animal::getType(void) const {
+std::string AAnimal::getType(void) const
+{
 	return (this->type);
 }
 
-void	Animal::makeSound(void) const {
-	std::cout << "a strange & indescribable animal sound is heard !" << std::endl;
+void AAnimal::makeSound(void) const
+{
+	std::cout << "a strange & indescribable AAnimal sound is heard !" << std::endl;
 }
 
-Brain	*Animal::getBrain(void) const {
+Brain *AAnimal::getBrain(void) const
+{
 	std::cout << "No brain found.. wtf ??" << std::endl;
 	return (NULL);
 }

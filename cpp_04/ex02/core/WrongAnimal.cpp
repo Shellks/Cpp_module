@@ -6,25 +6,28 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 14:31:00 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/22 15:10:15 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/24 10:31:29 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "WrongAnimal.hpp"
+#include "../include/WrongAnimal.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-WrongAnimal::WrongAnimal() : type("WrongNone"){
+WrongAnimal::WrongAnimal() : type("WrongNone")
+{
 	std::cout << "WrongAnimal default constructor called!" << std::endl;
 }
 
-WrongAnimal::WrongAnimal(std::string const type_name) : type(type_name){
+WrongAnimal::WrongAnimal(std::string const type_name) : type(type_name)
+{
 	std::cout << "WrongAnimal string constructor called!" << std::endl;
 }
 
-WrongAnimal::WrongAnimal( const WrongAnimal & src ) {
+WrongAnimal::WrongAnimal(const WrongAnimal &src)
+{
 	std::cout << "WrongAnimal copy constructor called!" << std::endl;
 	*this = src;
 }
@@ -33,7 +36,8 @@ WrongAnimal::WrongAnimal( const WrongAnimal & src ) {
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-WrongAnimal::~WrongAnimal() {
+WrongAnimal::~WrongAnimal()
+{
 	std::cout << "WrongAnimal destructor called!" << std::endl;
 }
 
@@ -41,8 +45,10 @@ WrongAnimal::~WrongAnimal() {
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-WrongAnimal &	WrongAnimal::operator=( WrongAnimal const & src ) {
-	if ( this != &src ) {
+WrongAnimal &WrongAnimal::operator=(WrongAnimal const &src)
+{
+	if (this != &src)
+	{
 		this->type = src.getType();
 	}
 	return *this;
@@ -50,10 +56,12 @@ WrongAnimal &	WrongAnimal::operator=( WrongAnimal const & src ) {
 
 /* ************************************************************************** */
 
-std::string	WrongAnimal::getType(void) const {
+std::string WrongAnimal::getType(void) const
+{
 	return (this->type);
 }
 
-void	WrongAnimal::makeSound(void) const {
+void WrongAnimal::makeSound(void) const
+{
 	std::cout << "The sounds of a WrongAnimal is heard !" << std::endl;
 }
