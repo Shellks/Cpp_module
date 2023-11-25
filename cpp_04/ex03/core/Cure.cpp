@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 13:25:53 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/25 10:44:50 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/25 20:37:22 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,10 @@
 
 Cure::Cure() : AMateria("cure")
 {
-	std::cout << "Cure materia created !" << std::endl;
 }
 
 Cure::Cure(const Cure &src) : AMateria("cure")
 {
-	std::cout << "Copy of cure materia created !" << std::endl;
 	*this = src;
 }
 
@@ -33,7 +31,6 @@ Cure::Cure(const Cure &src) : AMateria("cure")
 
 Cure::~Cure()
 {
-	std::cout << "Cure materia destroyed !" << std::endl;
 }
 
 /*

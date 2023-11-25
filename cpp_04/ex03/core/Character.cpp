@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:08:52 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/25 10:59:27 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/25 20:37:02 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ Character::~Character()
 	std::cout << this->_name << " has been destroyed by evil forces !" << std::endl;
 	int i = 0;
 	for (; i < 4; i++)
-		if (this->_invMateria[i])
+		if (this->_invMateria[i] != NULL)
 			delete _invMateria[i];
 	for (i = 0; i < this->_trashBagSize; i++)
 		if (this->_trashBag[i])
@@ -88,10 +88,15 @@ void Character::equip(AMateria *m)
 	int i = 0;
 	for (; i < 4; i++)
 	{
+		if (m == this->_invMateria[i])
+		{
+			std::cout << "this materia is already equipped" << std::endl;
+			return;
+		}
 		if (!this->_invMateria[i])
 		{
 			this->_invMateria[i] = m;
-			std::cout << m->getType() << " materia succesfully added to your materia inventory slot : " << i << std::endl;
+			std::cout << m->getType() << " materia succesfully added to " << this->getName() << " materia inventory slot : " << i << std::endl;
 			return;
 		}
 	}
@@ -105,7 +110,7 @@ void Character::unequip(int idx)
 	if (idx < 4 && this->_invMateria[idx])
 	{
 		this->dropMateria(this->_invMateria[idx]);
-		std::cout << "Materia " << this->_invMateria[idx]->getType() << "has been drop" << std::endl;
+		std::cout << "Materia " << this->_invMateria[idx]->getType() << " has been dropped" << std::endl;
 		this->_invMateria[idx] = NULL;
 		return;
 	}
@@ -129,13 +134,16 @@ void Character::dropMateria(AMateria *toDrop)
 void Character::use(int idx, ICharacter &target)
 {
 	if (idx < 0 || idx > 4)
-		std::cout << "Wrong index \"0 to 3\", only 4 materia slot are available" << std::endl;
+	{
+		std::cout << "Wrong index, only 4 materia slot are available : (0 to 3) index only" << std::endl;
+		return;
+	}
 	if (idx < 4 && this->_invMateria[idx])
 	{
 		this->_invMateria[idx]->use(target);
 		return;
 	}
-	std::cout << "Materia slot are all empty, add new one with \"equip\" action" << std::endl;
+	std::cout << "Materia slot choosen is empty, add new one with \"equip\" action" << std::endl;
 }
 
 /*

@@ -6,7 +6,7 @@
 #    By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/22 12:53:51 by acarlott          #+#    #+#              #
-#    Updated: 2023/11/24 13:56:59 by acarlott         ###   ########lyon.fr    #
+#    Updated: 2023/11/25 20:00:14 by acarlott         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,14 +17,16 @@ CFLAGS = -std=c++98 -Wall -Wextra -Werror
 CC = c++
 
 HEADER_PATH = ./include/
-HEADER_FILES = AMateria.hpp Ice.hpp Cure.hpp ICharacter.hpp Character.hpp
+HEADER_FILES = AMateria.hpp Ice.hpp Cure.hpp ICharacter.hpp Character.hpp \
+IMateriaSource.hpp MateriaSource.hpp
 HEADERS = $(addprefix $(HEADER_PATH), $(HEADER_FILES))
 
 SRCS =	core/main.cpp \
 		core/AMateria.cpp \
 		core/Ice.cpp \
 		core/Cure.cpp \
-		core/Character.cpp
+		core/Character.cpp \
+		core/MateriaSource.cpp \
 
 OBJS = ${SRCS:.cpp=.o}
 
