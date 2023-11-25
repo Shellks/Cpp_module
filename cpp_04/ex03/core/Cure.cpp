@@ -6,43 +6,44 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 13:25:53 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/24 13:36:56 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/25 10:44:50 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cure.hpp"
+#include "../include/Cure.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Cure::Cure() : AMateria("cure") {
+Cure::Cure() : AMateria("cure")
+{
 	std::cout << "Cure materia created !" << std::endl;
 }
 
-Cure::Cure( const Cure & src ) {
+Cure::Cure(const Cure &src) : AMateria("cure")
+{
 	std::cout << "Copy of cure materia created !" << std::endl;
 	*this = src;
 }
-
 
 /*
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-Cure::~Cure() {
+Cure::~Cure()
+{
 	std::cout << "Cure materia destroyed !" << std::endl;
 }
-
 
 /*
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Cure &	Cure::operator=( Cure const & src ) {
-	if (this != &src) {
+Cure &Cure::operator=(Cure const &src)
+{
+	if (this != &src)
 		this->type = src.type;
-	}
 	return *this;
 }
 
@@ -50,23 +51,25 @@ Cure &	Cure::operator=( Cure const & src ) {
 ** --------------------------------- METHODS ----------------------------------
 */
 
-AMateria* Cure::clone() const {
+AMateria *Cure::clone() const
+{
 	std::cout << "Cloning cure materia.." << std::endl;
-	AMateria	*clone = new Cure();
+	AMateria *clone = new Cure(*this);
 	return (clone);
 }
 
-void Cure::use(ICharacter& target) {
-		std::cout << "* heals " << target.name << "’s wounds *" << std::endl;
+void Cure::use(ICharacter &target)
+{
+	std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
 }
 
-std::string const &	Cure::getType() const {
+std::string const &Cure::getType() const
+{
 	return (this->type);
 }
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
-
 
 /* ************************************************************************** */
