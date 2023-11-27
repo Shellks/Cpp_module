@@ -6,7 +6,7 @@
 #    By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/22 12:53:51 by acarlott          #+#    #+#              #
-#    Updated: 2023/11/25 20:00:14 by acarlott         ###   ########lyon.fr    #
+#    Updated: 2023/11/27 11:04:19 by acarlott         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,6 @@ fclean: clean
 
 re : fclean all
 
-#.SILENT:
+.SILENT:
 
 .PHONY: all clean fclean re

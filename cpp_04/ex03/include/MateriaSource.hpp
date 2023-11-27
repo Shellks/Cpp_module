@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 19:53:04 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/25 20:28:07 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/27 14:28:34 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ public:
 
 	void learnMateria(AMateria *m);
 	AMateria *createMateria(std::string const &type);
+	AMateria GetInvMateriaSlot(int idx);
 
 private:
 	AMateria *_invMateriaSrc[4];

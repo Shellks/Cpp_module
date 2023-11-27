@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:08:52 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/25 20:37:02 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/27 17:10:55 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ Character::Character(std::string name) : _name(name)
 
 Character::Character(const Character &src)
 {
+	for (int i = 0; i < 4; i++)
+		this->_invMateria[i] = NULL;
+	this->_trashBag = NULL;
+	this->_trashBagSize = 0;
 	*this = src;
 }
 
@@ -45,15 +49,18 @@ Character::Character(const Character &src)
 
 Character::~Character()
 {
-	std::cout << this->_name << " has been destroyed by evil forces !" << std::endl;
 	int i = 0;
 	for (; i < 4; i++)
 		if (this->_invMateria[i] != NULL)
-			delete _invMateria[i];
+		{
+			delete this->_invMateria[i];
+			this->_invMateria[i] = NULL;
+		}
 	for (i = 0; i < this->_trashBagSize; i++)
-		if (this->_trashBag[i])
+		if (this->_trashBag[i] != NULL)
 			delete _trashBag[i];
 	delete[] this->_trashBag;
+	std::cout << this->_name << " has been destroyed by evil forces !" << std::endl;
 }
 
 /*
@@ -72,7 +79,11 @@ Character &Character::operator=(Character const &src)
 			this->_trashBag = new AMateria *[this->_trashBagSize];
 		int i = 0;
 		for (; i < 4; i++)
-			this->_invMateria[i] = src._invMateria[i];
+		{
+			if (this->_invMateria[i])
+				delete this->_invMateria[i];
+			this->_invMateria[i] = src._invMateria[i]->clone();
+		}
 		for (i = 0; i < this->_trashBagSize; i++)
 			this->_trashBag[i] = src._trashBag[i];
 	}
@@ -86,9 +97,11 @@ Character &Character::operator=(Character const &src)
 void Character::equip(AMateria *m)
 {
 	int i = 0;
+	if (!m)
+		return;
 	for (; i < 4; i++)
 	{
-		if (m == this->_invMateria[i])
+		if (this->_invMateria[i] && m == this->_invMateria[i])
 		{
 			std::cout << "this materia is already equipped" << std::endl;
 			return;
@@ -96,7 +109,7 @@ void Character::equip(AMateria *m)
 		if (!this->_invMateria[i])
 		{
 			this->_invMateria[i] = m;
-			std::cout << m->getType() << " materia succesfully added to " << this->getName() << " materia inventory slot : " << i << std::endl;
+			std::cout << m->getType() << " materia succesfully added to " << this->getName() << " materia inventory slot \"" << i << "\"" << std::endl;
 			return;
 		}
 	}
@@ -105,8 +118,11 @@ void Character::equip(AMateria *m)
 
 void Character::unequip(int idx)
 {
-	if (idx < 0 || idx > 4)
+	if (idx < 0 || idx > 3)
+	{
 		std::cout << "Wrong index \"0 to 3\", only 4 materia slot are available" << std::endl;
+		return;
+	}
 	if (idx < 4 && this->_invMateria[idx])
 	{
 		this->dropMateria(this->_invMateria[idx]);
@@ -114,7 +130,7 @@ void Character::unequip(int idx)
 		this->_invMateria[idx] = NULL;
 		return;
 	}
-	std::cout << "Materia slot are all empty, add new one with \"equip\" action" << std::endl;
+	std::cout << "Materia slot choosen is empty, add new one with \"equip\" action" << std::endl;
 }
 
 void Character::dropMateria(AMateria *toDrop)
@@ -133,12 +149,12 @@ void Character::dropMateria(AMateria *toDrop)
 
 void Character::use(int idx, ICharacter &target)
 {
-	if (idx < 0 || idx > 4)
+	if (idx < 0 || idx > 3)
 	{
 		std::cout << "Wrong index, only 4 materia slot are available : (0 to 3) index only" << std::endl;
 		return;
 	}
-	if (idx < 4 && this->_invMateria[idx])
+	if (this->_invMateria[idx])
 	{
 		this->_invMateria[idx]->use(target);
 		return;

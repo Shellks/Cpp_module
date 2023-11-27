@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:51:31 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/25 09:23:30 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/27 17:21:01 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ public:
 	virtual ~AMateria();
 
 	virtual AMateria &operator=(AMateria const &src);
-	std::string const &getType() const; // Returns the materia type
+	std::string const &getType() const;
 	virtual AMateria *clone() const = 0;
 	virtual void use(ICharacter &target);
 };
