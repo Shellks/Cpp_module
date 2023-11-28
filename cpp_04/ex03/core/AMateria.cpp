@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:51:34 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/25 09:20:33 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/28 16:14:16 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-AMateria::AMateria() : type("None")
+AMateria::AMateria() : type("None"), isDeleted(false)
 {
 }
 
-AMateria::AMateria(std::string const &type) : type(type)
+AMateria::AMateria(std::string const &type) : type(type), isDeleted(false)
 {
 }
 
@@ -46,6 +46,7 @@ AMateria &AMateria::operator=(AMateria const &src)
 	if (this != &src)
 	{
 		this->type = src.getType();
+		this->isDeleted = src.isDeleted;
 	}
 	return *this;
 }

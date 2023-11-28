@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:08:52 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/27 17:10:55 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/28 16:45:43 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,23 @@ Character::~Character()
 {
 	int i = 0;
 	for (; i < 4; i++)
-		if (this->_invMateria[i] != NULL)
+		if (this->_invMateria[i] && this->_invMateria[i]->isDeleted == false)
 		{
+			this->_invMateria[i]->isDeleted = true;
 			delete this->_invMateria[i];
 			this->_invMateria[i] = NULL;
 		}
 	for (i = 0; i < this->_trashBagSize; i++)
-		if (this->_trashBag[i] != NULL)
-			delete _trashBag[i];
+	{
+		if (this->_trashBag)
+		{
+			if (this->_trashBag[i] && this->_trashBag[i]->isDeleted && this->_trashBag[i]->isDeleted == false)
+			{
+				this->_trashBag[i]->isDeleted = true;
+				delete _trashBag[i];
+			}
+		}
+	}
 	delete[] this->_trashBag;
 	std::cout << this->_name << " has been destroyed by evil forces !" << std::endl;
 }
@@ -113,6 +122,7 @@ void Character::equip(AMateria *m)
 			return;
 		}
 	}
+	this->dropMateria(m);
 	std::cout << "Materia inventory is full" << std::endl;
 }
 

@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 19:56:24 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/27 17:12:52 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/28 16:45:17 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ MateriaSource::~MateriaSource()
 {
 	for (int i = 0; i < 4; i++)
 	{
-		if (this->_invMateriaSrc[i])
+		if (this->_invMateriaSrc[i] && this->_invMateriaSrc[i]->isDeleted == false)
 		{
+			this->_invMateriaSrc[i]->isDeleted = true;
 			delete this->_invMateriaSrc[i];
 			this->_invMateriaSrc[i] = NULL;
 		}

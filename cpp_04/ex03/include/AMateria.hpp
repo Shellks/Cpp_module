@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:51:31 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/27 17:21:01 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/11/28 16:17:23 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ public:
 	AMateria(std::string const &type);
 	AMateria(const AMateria &src);
 	virtual ~AMateria();
+
+	bool isDeleted;
 
 	virtual AMateria &operator=(AMateria const &src);
 	std::string const &getType() const;

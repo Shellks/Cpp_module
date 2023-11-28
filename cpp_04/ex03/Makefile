@@ -6,7 +6,7 @@
 #    By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/22 12:53:51 by acarlott          #+#    #+#              #
-#    Updated: 2023/11/27 11:04:19 by acarlott         ###   ########lyon.fr    #
+#    Updated: 2023/11/28 15:33:15 by acarlott         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,22 +16,23 @@ CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
 CC = c++
 
-HEADER_PATH = ./include/
-HEADER_FILES = AMateria.hpp Ice.hpp Cure.hpp ICharacter.hpp Character.hpp \
-IMateriaSource.hpp MateriaSource.hpp
-HEADERS = $(addprefix $(HEADER_PATH), $(HEADER_FILES))
+HEADER_PATH = include/
 
-SRCS =	core/main.cpp \
-		core/AMateria.cpp \
-		core/Ice.cpp \
-		core/Cure.cpp \
-		core/Character.cpp \
-		core/MateriaSource.cpp \
+SRCS_DIR = core/
 
-OBJS = ${SRCS:.cpp=.o}
+OBJS_DIR = .objs/
 
-./core/%.o:	./core/%.cpp ${HEADERS}
-	${CC} ${CFLAGS} -I${HEADER_PATH} -c $< -o $@ 
+SRCS =	main.cpp \
+		AMateria.cpp \
+		Ice.cpp \
+		Cure.cpp \
+		Character.cpp \
+		MateriaSource.cpp \
+
+OBJS = $(addprefix $(OBJS_DIR), ${SRCS:.cpp=.o})
+
+$(OBJS_DIR)%.o:	$(SRCS_DIR)%.cpp | $(OBJS_DIR)
+	${CC} ${CFLAGS} -I ${HEADER_PATH} -MMD -c $< -o $@ 
 
 all : ${NAME}
 
@@ -42,13 +43,18 @@ ${NAME} : ${OBJS}
 
 clean :
 	echo "\033[1;31mClean: \033[1;36mAll *.o"
-	rm -rf ${OBJS}
+	rm -rf ${OBJS_DIR}
 
 fclean: clean
 	echo "\033[1;31mClean: \033[1;36mexecutable"
 	rm -rf ${NAME}
 
 re : fclean all
+
+$(OBJS_DIR):
+	mkdir -p $(OBJS_DIR)
+
+-include $(OBJS:.o=.d)
 
 .SILENT:
 
