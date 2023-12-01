@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:41:48 by acarlott          #+#    #+#             */
-/*   Updated: 2023/10/06 16:27:08 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 13:25:21 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	main(void)
 
 	bandit.setAttackDamage(4);
 	scav.guardGate();
-	while (scav.getEnergyPoints() && bandit.getEnergyPoints()) {
+	while (scav.getEnergyPoints() && bandit.getEnergyPoints())
+	{
 		bandit.berepaired(15);
 		scav.attack(bandit.getName());
 		bandit.takedamage(scav.getAttackDamage());
@@ -37,5 +38,7 @@ int	main(void)
 			break ;
 		scav.berepaired(10);
 	}
+	ScavTrap	rivalscav(scav);
+	rivalscav.attack(scav.getName());
 	return 0;
 }

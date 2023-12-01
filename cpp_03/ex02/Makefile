@@ -6,7 +6,7 @@
 #    By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/05 18:19:12 by acarlott          #+#    #+#              #
-#    Updated: 2023/10/06 15:07:14 by acarlott         ###   ########lyon.fr    #
+#    Updated: 2023/12/01 13:34:56 by acarlott         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,19 +16,21 @@ CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
 CC = c++
 
-HEADER_PATH = ./include/
-HEADER_FILES = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
-HEADERS = $(addprefix $(HEADER_PATH), $(HEADER_FILES))
+HEADER_PATH = include/
 
-SRCS =	core/main.cpp \
-		core/ClapTrap.cpp \
-		core/ScavTrap.cpp \
-		core/FragTrap.cpp \
+SRCS_DIR = core/
 
-OBJS = ${SRCS:.cpp=.o}
+OBJS_DIR = .objs/
 
-./core/%.o:	./core/%.cpp ${HEADERS}
-	${CC} ${CFLAGS} -I${HEADER_PATH} -c $< -o $@ 
+SRCS =	main.cpp \
+		ClapTrap.cpp \
+		ScavTrap.cpp \
+		FragTrap.cpp
+
+OBJS = $(addprefix $(OBJS_DIR), ${SRCS:.cpp=.o})
+
+$(OBJS_DIR)%.o:	$(SRCS_DIR)%.cpp | $(OBJS_DIR)
+	${CC} ${CFLAGS} -I ${HEADER_PATH} -MMD -c $< -o $@ 
 
 all : ${NAME}
 
@@ -39,13 +41,18 @@ ${NAME} : ${OBJS}
 
 clean :
 	echo "\033[1;31mClean: \033[1;36mAll *.o"
-	rm -rf ${OBJS}
+	rm -rf ${OBJS_DIR}
 
 fclean: clean
 	echo "\033[1;31mClean: \033[1;36mexecutable"
 	rm -rf ${NAME}
 
 re : fclean all
+
+$(OBJS_DIR):
+	mkdir -p $(OBJS_DIR)
+
+-include $(OBJS:.o=.d)
 
 .SILENT:
 

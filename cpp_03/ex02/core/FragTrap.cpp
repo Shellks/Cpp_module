@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:36:12 by acarlott          #+#    #+#             */
-/*   Updated: 2023/10/06 16:17:50 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 13:53:18 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,18 @@ FragTrap::FragTrap(FragTrap const& src) : ClapTrap(src) {
 FragTrap::~FragTrap(void) {
 	std::cout << "FragTrap " << this->_Name << " destructor called !" << std::endl;
 	return ;
+}
+
+FragTrap&	FragTrap::operator=(FragTrap const& src)
+{
+	if (this != &src)
+	{
+		this->_Name = src._Name;
+		this->_HitPoints = src._HitPoints;
+		this->_EnergyPoints = src._EnergyPoints;
+		this->_AttackDamage = src._AttackDamage;
+	}
+	return (*this);
 }
 
 void	FragTrap::highFivesGuys(void)

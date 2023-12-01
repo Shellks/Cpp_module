@@ -6,10 +6,9 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:41:27 by acarlott          #+#    #+#             */
-/*   Updated: 2023/10/06 15:57:41 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 13:23:46 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef CLAPTRAP_HPP
 # define CLAPTRAP_HPP
@@ -40,9 +39,6 @@ class ClapTrap
 		unsigned int	_HitPoints;
 		unsigned int	_EnergyPoints;
 		unsigned int	_AttackDamage;
-
-	private:
-	
-	};
+};
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 20:06:29 by acarlott          #+#    #+#             */
-/*   Updated: 2023/10/06 15:57:34 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 13:14:14 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ class ScavTrap : public ClapTrap
 		ScavTrap(ScavTrap const& src);
 		~ScavTrap(void);
 
-		void	guardGate(void);
-		void	attack(const std::string& target);
+		ScavTrap&	operator=(ScavTrap const& src);
+		void		guardGate(void);
+		void		attack(const std::string& target);
 };
 
 

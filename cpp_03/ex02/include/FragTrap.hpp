@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:07:41 by acarlott          #+#    #+#             */
-/*   Updated: 2023/10/06 15:58:21 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 13:43:32 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ class FragTrap : public ClapTrap
 		FragTrap(FragTrap const& src);
 		~FragTrap(void);
 
-		void	highFivesGuys(void);
+		FragTrap&	operator=(FragTrap const& src);
+		void		highFivesGuys(void);
 };
 
 #endif

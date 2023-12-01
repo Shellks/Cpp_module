@@ -6,14 +6,15 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 17:41:27 by acarlott          #+#    #+#             */
-/*   Updated: 2023/10/05 19:01:54 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 12:56:58 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 
 #ifndef CLAPTRAP_HPP
 # define CLAPTRAP_HPP
+
+#include <iostream>
 
 class ClapTrap
 {
@@ -38,6 +39,6 @@ class ClapTrap
 		void			attack(const std::string& target);
 		void			takedamage(unsigned int amount);
 		void			berepaired(unsigned int amount);
-	};
+};
 
 #endif
