@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 19:56:24 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/28 16:45:17 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 15:37:58 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,8 @@ MateriaSource::~MateriaSource()
 {
 	for (int i = 0; i < 4; i++)
 	{
-		if (this->_invMateriaSrc[i] && this->_invMateriaSrc[i]->isDeleted == false)
+		if (this->_invMateriaSrc[i])
 		{
-			this->_invMateriaSrc[i]->isDeleted = true;
 			delete this->_invMateriaSrc[i];
 			this->_invMateriaSrc[i] = NULL;
 		}
@@ -77,9 +76,16 @@ void MateriaSource::learnMateria(AMateria *m)
 	{
 		if (!this->_invMateriaSrc[i])
 		{
-			this->_invMateriaSrc[i] = m;
-			std::cout << m->getType() << " materia learned !" << std::endl;
-			return;
+			if (m->isAssign == true)
+			{
+				this->_invMateriaSrc[i] = m;
+				std::cout << m->getType() << " materia learned !" << std::endl;
+				return ;
+			}
+			else {
+				std::cout << "this materia is already equipped" << std::endl;
+				return;
+			}
 		}
 	}
 	delete m;

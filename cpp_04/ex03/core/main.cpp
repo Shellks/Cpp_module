@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:52:09 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/28 16:45:58 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 15:35:54 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ int main(void)
 	{
 		AMateria *test = new Ice();
 		IMateriaSource *src = new MateriaSource();
+		ICharacter *Cloud = new Character("Cloud");
+		Cloud->equip(test);
 		src->learnMateria(test);
 		src->learnMateria(new Cure());
-		ICharacter *Cloud = new Character("Cloud");
 		std::cout << "the type of materia is : " << test->getType() << std::endl;
 		Cloud->equip(test);
-		Cloud->equip(test);
 		Cloud->unequip(0);
-		delete (src);
 		delete (Cloud);
+		delete (src);
 		// Segfault quand on assigne le meme pointeur d'instance AMateria a l'inventaire de materiasrc et celui du perso
 		// on delete bien au 1er destructeur mais le second a toujours un pointeur valide bien que l'adresse associé soit delete.
 	}

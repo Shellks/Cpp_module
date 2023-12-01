@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:51:31 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/28 16:17:23 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 15:16:05 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ public:
 	AMateria(const AMateria &src);
 	virtual ~AMateria();
 
-	bool isDeleted;
-
 	virtual AMateria &operator=(AMateria const &src);
+	
+	bool	isAssign;
+
 	std::string const &getType() const;
 	virtual AMateria *clone() const = 0;
 	virtual void use(ICharacter &target);

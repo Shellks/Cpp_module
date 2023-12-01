@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:08:55 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/27 16:05:25 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 14:49:23 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ public:
 	void unequip(int idx);
 	void use(int idx, ICharacter &target);
 	void dropMateria(AMateria *toDrop);
+	AMateria *getMateria(int index);
 
 private:
 	std::string _name;

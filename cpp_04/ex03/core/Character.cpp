@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:08:52 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/28 16:45:43 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/01 15:26:06 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,8 @@ Character::~Character()
 {
 	int i = 0;
 	for (; i < 4; i++)
-		if (this->_invMateria[i] && this->_invMateria[i]->isDeleted == false)
+		if (this->_invMateria[i])
 		{
-			this->_invMateria[i]->isDeleted = true;
 			delete this->_invMateria[i];
 			this->_invMateria[i] = NULL;
 		}
@@ -61,11 +60,8 @@ Character::~Character()
 	{
 		if (this->_trashBag)
 		{
-			if (this->_trashBag[i] && this->_trashBag[i]->isDeleted && this->_trashBag[i]->isDeleted == false)
-			{
-				this->_trashBag[i]->isDeleted = true;
+			if (this->_trashBag[i])
 				delete _trashBag[i];
-			}
 		}
 	}
 	delete[] this->_trashBag;
@@ -118,6 +114,7 @@ void Character::equip(AMateria *m)
 		if (!this->_invMateria[i])
 		{
 			this->_invMateria[i] = m;
+			this->_invMateria[i]->isAssign = true;
 			std::cout << m->getType() << " materia succesfully added to " << this->getName() << " materia inventory slot \"" << i << "\"" << std::endl;
 			return;
 		}
@@ -175,6 +172,11 @@ void Character::use(int idx, ICharacter &target)
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
+
+AMateria *Character::getMateria(int index)
+{
+	return (this->_invMateria[index]);
+}
 
 std::string const &Character::getName() const
 {
