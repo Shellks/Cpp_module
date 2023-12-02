@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:08:52 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/01 15:26:06 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/02 10:19:17 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,10 @@ Character::~Character()
 	int i = 0;
 	for (; i < 4; i++)
 		if (this->_invMateria[i])
-		{
 			delete this->_invMateria[i];
-			this->_invMateria[i] = NULL;
-		}
 	for (i = 0; i < this->_trashBagSize; i++)
-	{
-		if (this->_trashBag)
-		{
-			if (this->_trashBag[i])
-				delete _trashBag[i];
-		}
-	}
+		if (this->_trashBag[i])
+			delete _trashBag[i];
 	delete[] this->_trashBag;
 	std::cout << this->_name << " has been destroyed by evil forces !" << std::endl;
 }
@@ -106,7 +98,7 @@ void Character::equip(AMateria *m)
 		return;
 	for (; i < 4; i++)
 	{
-		if (this->_invMateria[i] && m == this->_invMateria[i])
+		if (m->isAssign == true)
 		{
 			std::cout << "this materia is already equipped" << std::endl;
 			return;

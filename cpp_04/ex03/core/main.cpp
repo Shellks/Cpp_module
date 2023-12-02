@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:52:09 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/01 15:35:54 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/02 10:36:59 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 int main(void)
 {
 	// {
+	// 	std::cout << "	TEST 0 : Default test" << std::endl;
+	// 	std::cout << std::endl;
 	// 	IMateriaSource *src = new MateriaSource();
 	// 	src->learnMateria(new Ice());
 	// 	src->learnMateria(new Cure());
@@ -37,22 +39,25 @@ int main(void)
 	// 	delete src;
 	// 	return 0;
 	// }
-	// 					Test to debug !!!! : Pointer management
-	{
-		AMateria *test = new Ice();
-		IMateriaSource *src = new MateriaSource();
-		ICharacter *Cloud = new Character("Cloud");
-		Cloud->equip(test);
-		src->learnMateria(test);
-		src->learnMateria(new Cure());
-		std::cout << "the type of materia is : " << test->getType() << std::endl;
-		Cloud->equip(test);
-		Cloud->unequip(0);
-		delete (Cloud);
-		delete (src);
-		// Segfault quand on assigne le meme pointeur d'instance AMateria a l'inventaire de materiasrc et celui du perso
-		// on delete bien au 1er destructeur mais le second a toujours un pointeur valide bien que l'adresse associé soit delete.
-	}
+	// 					Test 0 : Pointer management
+	// {
+	// 	std::cout << "	TEST 0 : Pointer management" << std::endl;
+	// 	std::cout << std::endl;
+	// 	ICharacter *Cloud = new Character("Cloud");
+	// 	IMateriaSource *src = new MateriaSource();
+	// 	AMateria *test = new Ice();
+	// 	src->learnMateria(new Cure());
+	// 	src->learnMateria(test);
+	// 	src->learnMateria(test);
+	// 	Cloud->equip(test);
+	// 	Cloud->equip(test);
+	// 	Cloud->equip(src->createMateria("ice"));
+	// 	Cloud->use(0, *Cloud);
+	// 	Cloud->unequip(0);
+	// 	Cloud->use(0, *Cloud);
+	// 	delete (Cloud);
+	// 	delete (src);
+	// }
 	// 					Test 1 : Inventory && Use management
 	// {
 	// 	std::cout << "	TEST : Inventory && Use management" << std::endl;
@@ -62,7 +67,6 @@ int main(void)
 	// 	int i = 0;
 	// 	for (; i < 5; i++)
 	// 		((i % 2 == 0) ? src->learnMateria(new Ice()) : src->learnMateria(new Cure()));
-	// 	// Leak de materia quand l'inventaire est plein et qu'on veut add, le sujet nous demande de ne rien faire ducoup on gere comment la ?
 	// 	for (i = 0; i < 5; i++)
 	// 		((i % 2 == 0) ? Cloud->equip(src->createMateria("ice")) : Cloud->equip(src->createMateria("cure")));
 	// 	for (i = 0; i < 5; i++)
@@ -76,43 +80,37 @@ int main(void)
 	// 	delete (src);
 	// }
 	// Test 2 : Deep Copy
-// 	{
-// 		std::cout << "	TEST : DEEP COPY" << std::endl;
-// 		IMateriaSource *src = new MateriaSource();
-// 		Character *Cloud = new Character("Cloud");
-// 		Character *Sephiroth = new Character("Sephiroth");
-// 		int i = 0;
-
-// 		src->learnMateria(new Ice());
-// 		src->learnMateria(new Cure());
-// 		for (i = 0; i < 4; i++)
-// 		{
-// 			Cloud->equip(src->createMateria("ice"));
-// 			Sephiroth->equip(src->createMateria("cure"));
-// 		}
-// 		std::cout << "Genesis appears and copy Sephiroth inventory" << std::endl;
-// 		Character *Genesis = new Character(*Sephiroth);
-// 		std::cout << "Sephiroth copy Cloud inventory" << std::endl;
-// 		*Sephiroth = *Cloud;
-// 		for (i = 0; i < 4; i++)
-// 		{
-// 			Genesis->use(0, *Cloud);
-// 			Sephiroth->use(i, *Cloud);
-// 		}
-// 		for (i = 0; i < 4; i++)
-// 		{
-// 			Cloud->unequip(i);
-// 			Cloud->equip(src->createMateria("test"));
-// 		}
-// 		for (i = 0; i < 4; i++)
-// 		{
-// 			Cloud->use(i, *Sephiroth);
-// 			Sephiroth->use(i, *Cloud);
-// 			Genesis->use(i, *Cloud);
-// 		}
-// 		delete (Cloud);
-// 		delete (Sephiroth);
-// 		delete (Genesis);
-// 		delete (src);
-// 	}
+	// {
+	// 	std::cout << "	TEST : DEEP COPY" << std::endl;
+	// 	IMateriaSource *src = new MateriaSource();
+	// 	Character *Cloud = new Character("Cloud");
+	// 	Character *Sephiroth = new Character("Sephiroth");
+	// 	int i = 0;
+	// 	src->learnMateria(new Ice());
+	// 	src->learnMateria(new Cure());
+	// 	for (i = 0; i < 4; i++)
+	// 	{
+	// 		Cloud->equip(src->createMateria("ice"));
+	// 		Sephiroth->equip(src->createMateria("cure"));
+	// 	}
+	// 	std::cout << "Genesis appears and copy Sephiroth inventory" << std::endl;
+	// 	Character *Genesis = new Character(*Sephiroth);
+	// 	std::cout << "Sephiroth copy Cloud inventory" << std::endl;
+	// 	*Sephiroth = *Cloud;
+	// 	for (i = 0; i < 4; i++)
+	// 	{
+	// 		Cloud->unequip(i);
+	// 		Cloud->equip(src->createMateria("test"));
+	// 	}
+	// 	for (i = 0; i < 4; i++)
+	// 	{
+	// 		Genesis->use(0, *Cloud);
+	// 		Sephiroth->use(i, *Cloud);
+	// 		Cloud->use(i, *Sephiroth);
+	// 	}
+	// 	delete (Cloud);
+	// 	delete (Sephiroth);
+	// 	delete (Genesis);
+	// 	delete (src);
+	// }
 }
