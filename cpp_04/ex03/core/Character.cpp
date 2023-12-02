@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:08:52 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/02 10:19:17 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/02 11:08:24 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,8 @@ void Character::dropMateria(AMateria *toDrop)
 	AMateria **newTrashBag;
 	int i = 0;
 
+	if (!toDrop)
+		return;
 	this->_trashBagSize++;
 	newTrashBag = new AMateria *[this->_trashBagSize];
 	for (; i < this->_trashBagSize - 1; i++)

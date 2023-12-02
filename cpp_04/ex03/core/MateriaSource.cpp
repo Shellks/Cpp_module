@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 19:56:24 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/02 10:21:32 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/02 11:07:42 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ MateriaSource &MateriaSource::operator=(MateriaSource const &src)
 
 void MateriaSource::learnMateria(AMateria *m)
 {
+	if (!m)
+		return;
 	for (int i = 0; i < 4; i++)
 	{
 		if (!this->_invMateriaSrc[i])
