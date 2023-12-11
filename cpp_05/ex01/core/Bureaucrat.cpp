@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 10:51:18 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/11 17:36:43 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/11 23:15:55 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,13 @@ Bureaucrat::Bureaucrat() : _name("Random_bureaucrat"), _grade(150)
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
-	try
-	{
-		if (grade < 1)
-			throw(Bureaucrat::GradeTooHighException());
-		else if (grade > 150)
-			throw(Bureaucrat::GradeTooLowException());
-		this->_grade = grade;
-		std::cout << "Bureaucrat " << YELLOW << this->_name << RESET << " was " << GREEN << "hired" << RESET << std::endl;
-		// std::cout << "his current grade is: " << BLUE << this->_grade << RESET << std::endl;
-	}
-	catch (std::exception &e)
-	{
-		std::cout << RED << e.what() << RESET << std::endl;
-		// mettre le grade corresponndant quand le user mais un mauvais grade
-		// this->_grade = 150;
-		return;
-	}
+	if (grade < 1)
+		throw(Bureaucrat::GradeTooHighException());
+	else if (grade > 150)
+		throw(Bureaucrat::GradeTooLowException());
+	this->_grade = grade;
+	std::cout << "Bureaucrat " << YELLOW << this->_name << RESET << " was " << GREEN << "hired" << RESET << std::endl;
+	// std::cout << "his current grade is: " << BLUE << this->_grade << RESET << std::endl;
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &src) : _name(src.getName() + "Copy")
@@ -71,19 +61,37 @@ std::ostream &operator<<(std::ostream &out, Bureaucrat const &src)
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
+
+void Bureaucrat::signForm(Form &form)
+{
+	if (form.isSigned() == true)
+		std::cout << "Bureaucrat " << YELLOW << this->_name << RESET << " couldn't sign " << YELLOW << form.getName() << RESET << " because " << RED << "is already signed" << RESET << std::endl;
+	else
+	{
+		try
+		{
+			form.beSigned(*this);
+			std::cout << "Bureaucrat " << YELLOW << this->_name << GREEN << " signed " << YELLOW << form.getName() << RESET << std::endl;
+		}
+		catch (std::exception &e)
+		{
+			std::cout << "Bureaucrat " << YELLOW << this->_name << RESET << " couldn't sign " << YELLOW << form.getName() << RESET << " because " << RED << e.what() << RESET << std::endl;
+			return;
+		}
+	}
+}
+
 std::string Bureaucrat::getName() const
 {
 	return (this->_name);
 }
-unsigned int Bureaucrat::getGrade() const
+int Bureaucrat::getGrade() const
 {
 	return (this->_grade);
 }
 
 void Bureaucrat::incrementGrade(void)
 {
-	if (this->_grade == 0)
-		throw(Bureaucrat::GradeTooHighException());
 	this->_grade--;
 	if (this->_grade < 1)
 	{
