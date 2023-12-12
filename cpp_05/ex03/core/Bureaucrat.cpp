@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 10:51:18 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/12 19:40:48 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/12 19:43:40 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void Bureaucrat::executeForm(AForm const &form)
 {
 	try
 	{
-		std::cout << "Bureaucrat " << YELLOW << this->_name << GREEN << " executed " << YELLOW << form.getName() << RESET << std::endl;
 		form.execute(*this);
+		std::cout << "Bureaucrat " << YELLOW << this->_name << GREEN << " executed " << YELLOW << form.getName() << RESET << std::endl;
 	}
 	catch (std::exception &e)
 	{
