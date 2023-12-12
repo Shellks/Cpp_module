@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 10:46:22 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/11 23:39:27 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/12 15:56:58 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,16 @@ public:
 	int getGrade(void) const;
 	void incrementGrade(void);
 	void decrementGrade(void);
+	void executeForm(AForm const &form);
 	class GradeTooHighException : public std::exception
 	{
 	public:
-		virtual const char *what() const throw();
+		virtual const char *what(void) const throw();
 	};
 	class GradeTooLowException : public std::exception
 	{
 	public:
-		virtual const char *what() const throw();
+		virtual const char *what(void) const throw();
 	};
 };
 std::ostream &operator<<(std::ostream &out, Bureaucrat const &src);

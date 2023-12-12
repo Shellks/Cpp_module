@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:58:49 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/11 23:33:50 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/12 16:02:42 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 AForm::AForm() : _name("Random_AForm"), _gradeToSign(150), _gradeToExecute(150), _Signed(false)
 {
-	std::cout << "AForm " << YELLOW << this->_name << RESET << " was " << GREEN << "created" << RESET << std::endl;
+	// std::cout << "AForm " << YELLOW << this->_name << RESET << " was " << GREEN << "created" << RESET << std::endl;
 }
 
 AForm::AForm(std::string name, int gradeToSign, int gradeToExecute) : _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute), _Signed(false)
@@ -23,12 +23,12 @@ AForm::AForm(std::string name, int gradeToSign, int gradeToExecute) : _name(name
 		throw(AForm::GradeTooHighException());
 	else if (this->_gradeToSign > 150 || this->_gradeToExecute > 150)
 		throw(AForm::GradeTooLowException());
-	std::cout << "AForm " << YELLOW << this->_name << RESET << " was " << GREEN << "created" << RESET << std::endl;
+	// std::cout << "AForm " << YELLOW << this->_name << RESET << " was " << GREEN << "created" << RESET << std::endl;
 }
 
-AForm::AForm(AForm const &src) : _name(src._name + "Copy"), _gradeToSign(src._gradeToSign), _gradeToExecute(src._gradeToExecute), _Signed(false)
+AForm::AForm(AForm const &src) : _name(src._name + "Copy"), _gradeToSign(src._gradeToSign), _gradeToExecute(src._gradeToExecute), _Signed(src._Signed)
 {
-	std::cout << "AForm " << YELLOW << this->_name << RESET << " was " << GREEN << "creat " << RESET << "with " << YELLOW << src._name << RESET << " Aform" << std::endl;
+	// std::cout << "AForm " << YELLOW << this->_name << RESET << " was " << GREEN << "creat " << RESET << "with " << YELLOW << src._name << RESET << " Aform" << std::endl;
 }
 
 AForm::~AForm()
@@ -61,7 +61,9 @@ std::ostream &operator<<(std::ostream &out, AForm const &src)
 
 void AForm::beSigned(Bureaucrat const &crat)
 {
-	if (this->_gradeToSign >= crat.getGrade())
+	if (this->isSigned() == true)
+		throw(AForm::IsSignedException());
+	else if (this->_gradeToSign >= crat.getGrade())
 		this->_Signed = true;
 	else
 		throw(AForm::GradeTooLowException());
@@ -95,4 +97,14 @@ const char *AForm::GradeTooHighException::what() const throw()
 const char *AForm::GradeTooLowException::what() const throw()
 {
 	return ("Grade is too low");
+}
+
+const char *AForm::IsNotSignedException::what() const throw()
+{
+	return ("is not signed");
+}
+
+const char *AForm::IsSignedException::what() const throw()
+{
+	return ("is already signed");
 }

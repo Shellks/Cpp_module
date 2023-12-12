@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 10:51:18 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/11 23:38:32 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/12 16:16:17 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,29 +55,37 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &src)
 }
 std::ostream &operator<<(std::ostream &out, Bureaucrat const &src)
 {
-	out << YELLOW << src.getName() << RESET << ", bureaucrat grade " << BLUE << src.getGrade() << RESET;
+	out << YELLOW << src.getName() << RESET << ", bureaucrat grade: " << BLUE << src.getGrade() << RESET;
 	return (out);
 }
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
 
+void Bureaucrat::executeForm(AForm const &form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << "Bureaucrat " << YELLOW << this->_name << GREEN << " executed " << YELLOW << form.getName() << RESET << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << "Bureaucrat " << YELLOW << this->getName() << RESET << " couldn't execute " << YELLOW << form.getName() << RESET << " because " << RED << e.what() << RESET << std::endl;
+	}
+}
+
 void Bureaucrat::signForm(AForm &form)
 {
-	if (form.isSigned() == true)
-		std::cout << "Bureaucrat " << YELLOW << this->_name << RESET << " couldn't sign " << YELLOW << form.getName() << RESET << " because " << RED << "is already signed" << RESET << std::endl;
-	else
+	try
 	{
-		try
-		{
-			form.beSigned(*this);
-			std::cout << "Bureaucrat " << YELLOW << this->_name << GREEN << " signed " << YELLOW << form.getName() << RESET << std::endl;
-		}
-		catch (std::exception &e)
-		{
-			std::cout << "Bureaucrat " << YELLOW << this->_name << RESET << " couldn't sign " << YELLOW << form.getName() << RESET << " because " << RED << e.what() << RESET << std::endl;
-			return;
-		}
+		form.beSigned(*this);
+		std::cout << "Bureaucrat " << YELLOW << this->_name << GREEN << " signed " << YELLOW << form.getName() << RESET << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << "Bureaucrat " << YELLOW << this->_name << RESET << " couldn't sign " << YELLOW << form.getName() << RESET << " because " << RED << e.what() << RESET << std::endl;
+		return;
 	}
 }
 
@@ -113,11 +121,11 @@ void Bureaucrat::decrementGrade(void)
 */
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("Grade is too high ! Max grade is '1' ");
+	return ("Grade is too high: Max grade is '1' ");
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return ("Grade is too low ! Max grade is '150' ");
+	return ("Grade is too low: Max grade is '150' ");
 }
 /* ************************************************************************** */

@@ -6,7 +6,7 @@
 #    By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/22 12:53:51 by acarlott          #+#    #+#              #
-#    Updated: 2023/12/11 23:39:06 by acarlott         ###   ########lyon.fr    #
+#    Updated: 2023/12/12 13:34:14 by acarlott         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,10 @@ OBJS_DIR = .objs/
 
 SRCS =	main.cpp \
 		Bureaucrat.cpp \
-		AForm.cpp
+		AForm.cpp \
+		RobotomyRequestForm.cpp \
+		ShrubberyCreationForm.cpp \
+		PresidentialPardonForm.cpp
 
 OBJS = $(addprefix $(OBJS_DIR), ${SRCS:.cpp=.o})
 
