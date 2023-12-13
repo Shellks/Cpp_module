@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:55:00 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/23 14:27:33 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 11:38:08 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 
 class Animal
 {
+	protected :
+		std::string	type;
+
 	public :
 		Animal();
 		Animal( std::string const type_name );
@@ -29,8 +32,6 @@ class Animal
 		std::string		getType(void) const;
 		virtual void	makeSound(void) const;
 
-	protected :
-		std::string	type;
 };
 
 #endif

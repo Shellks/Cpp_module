@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:51:34 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/02 10:13:08 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 13:28:32 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,9 @@ AMateria::AMateria(std::string const &type) : type(type), isAssign(false)
 {
 }
 
-AMateria::AMateria(const AMateria &src)
+AMateria::AMateria(const AMateria &src) : type(src.type), isAssign(false)
 {
-	this->type = "None";
-	this->isAssign = false;
-	*this = src;
+	(void)src;
 }
 
 /*

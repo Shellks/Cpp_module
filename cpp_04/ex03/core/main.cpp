@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:52:09 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/02 10:36:59 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 13:59:14 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,26 @@
 
 int main(void)
 {
-	// {
-	// 	std::cout << "	TEST 0 : Default test" << std::endl;
-	// 	std::cout << std::endl;
-	// 	IMateriaSource *src = new MateriaSource();
-	// 	src->learnMateria(new Ice());
-	// 	src->learnMateria(new Cure());
-	// 	ICharacter *Cloud = new Character("Cloud");
-	// 	AMateria *tmp;
-	// 	tmp = src->createMateria("ice");
-	// 	Cloud->equip(tmp);
-	// 	tmp = src->createMateria("cure");
-	// 	Cloud->equip(tmp);
-	// 	ICharacter *Sephiroth = new Character("Sephiroth");
-	// 	Cloud->use(0, *Sephiroth);
-	// 	Cloud->use(1, *Sephiroth);
-	// 	delete Sephiroth;
-	// 	delete Cloud;
-	// 	delete src;
-	// 	return 0;
-	// }
-	// 					Test 0 : Pointer management
+	{
+		std::cout << "	TEST 0 : Default test" << std::endl;
+		std::cout << std::endl;
+		IMateriaSource *src = new MateriaSource();
+		src->learnMateria(new Ice());
+		src->learnMateria(new Cure());
+		ICharacter *Cloud = new Character("Cloud");
+		AMateria *tmp;
+		tmp = src->createMateria("ice");
+		Cloud->equip(tmp);
+		tmp = src->createMateria("cure");
+		Cloud->equip(tmp);
+		ICharacter *Sephiroth = new Character("Sephiroth");
+		Cloud->use(0, *Sephiroth);
+		Cloud->use(1, *Sephiroth);
+		delete Sephiroth;
+		delete Cloud;
+		delete src;
+	}
+//						Test 0 : Pointer management
 	// {
 	// 	std::cout << "	TEST 0 : Pointer management" << std::endl;
 	// 	std::cout << std::endl;
@@ -58,7 +57,7 @@ int main(void)
 	// 	delete (Cloud);
 	// 	delete (src);
 	// }
-	// 					Test 1 : Inventory && Use management
+//						Test 1 : Inventory && Use management
 	// {
 	// 	std::cout << "	TEST : Inventory && Use management" << std::endl;
 	// 	IMateriaSource *src = new MateriaSource();
@@ -79,7 +78,7 @@ int main(void)
 	// 	delete (Sephiroth);
 	// 	delete (src);
 	// }
-	// Test 2 : Deep Copy
+// //	Test 2 : Deep Copy
 	// {
 	// 	std::cout << "	TEST : DEEP COPY" << std::endl;
 	// 	IMateriaSource *src = new MateriaSource();
