@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:06:08 by acarlott          #+#    #+#             */
-/*   Updated: 2023/11/23 16:52:57 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/13 11:38:58 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 */
 
 Dog::Dog() : Animal("Dog") {
-	std::cout << "Cat default constructor called!" << std::endl;
+	std::cout << "Dog default constructor called!" << std::endl;
 }
 
 Dog::Dog( const Dog & src ) : Animal(src) {
-	std::cout << "Cat copy constructor called!" << std::endl;
+	std::cout << "Dog copy constructor called!" << std::endl;
 	*this = src;
 }
 

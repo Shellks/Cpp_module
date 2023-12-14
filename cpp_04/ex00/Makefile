@@ -6,7 +6,7 @@
 #    By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/22 12:53:51 by acarlott          #+#    #+#              #
-#    Updated: 2023/11/22 14:42:21 by acarlott         ###   ########lyon.fr    #
+#    Updated: 2023/12/13 12:52:38 by acarlott         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,21 +16,23 @@ CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
 CC = c++
 
-HEADER_PATH = ./include/
-HEADER_FILES = Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp
-HEADERS = $(addprefix $(HEADER_PATH), $(HEADER_FILES))
+HEADER_PATH = include/
 
-SRCS =	core/main.cpp \
-		core/Dog.cpp \
-		core/Cat.cpp \
-		core/Animal.cpp \
-		core/WrongCat.cpp \
-		core/WrongAnimal.cpp \
+SRCS_DIR = core/
 
-OBJS = ${SRCS:.cpp=.o}
+OBJS_DIR = .objs/
 
-./core/%.o:	./core/%.cpp ${HEADERS}
-	${CC} ${CFLAGS} -I${HEADER_PATH} -c $< -o $@ 
+SRCS =	main.cpp \
+		Dog.cpp \
+		Cat.cpp \
+		Animal.cpp \
+		WrongCat.cpp \
+		WrongAnimal.cpp \
+
+OBJS = $(addprefix $(OBJS_DIR), ${SRCS:.cpp=.o})
+
+$(OBJS_DIR)%.o:	$(SRCS_DIR)%.cpp | $(OBJS_DIR)
+	${CC} ${CFLAGS} -I ${HEADER_PATH} -MMD -c $< -o $@ 
 
 all : ${NAME}
 
@@ -41,13 +43,18 @@ ${NAME} : ${OBJS}
 
 clean :
 	echo "\033[1;31mClean: \033[1;36mAll *.o"
-	rm -rf ${OBJS}
+	rm -rf ${OBJS_DIR}
 
 fclean: clean
 	echo "\033[1;31mClean: \033[1;36mexecutable"
 	rm -rf ${NAME}
 
 re : fclean all
+
+$(OBJS_DIR):
+	mkdir -p $(OBJS_DIR)
+
+-include $(OBJS:.o=.d)
 
 .SILENT:
 
