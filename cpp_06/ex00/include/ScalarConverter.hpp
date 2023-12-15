@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:00:12 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/14 18:09:08 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/15 13:56:27 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,14 @@ private:
 	~ScalarConverter();
 
 	ScalarConverter &operator=(ScalarConverter const &src);
+	static bool ConvertParser(std::string *l_str);
 	static void ConvertToInt(double const litteralDouble);
 	static void ConvertToFloat(double const litteralDouble);
 	static void ConvertToChar(double const litteralDouble);
 	static void ConvertToDouble(double const litteralDouble);
 
 public:
-	static void convert(std::string const &litteralString);
+	static void convert(std::string litteralString);
 };
 
 #endif
