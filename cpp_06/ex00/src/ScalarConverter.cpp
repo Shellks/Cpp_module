@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:01:26 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/15 14:15:55 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/18 13:03:37 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void ScalarConverter::ConvertToFloat(double const litteralDouble)
 		}
 	}
 	int checkDecimal = static_cast<int>(litteralDouble);
-	if (litteralDouble < 999999 && litteralDouble > -999999) {
+	if (litteralDouble <= 999999 && litteralDouble >= -999999) {
 		if (static_cast<double>(checkDecimal) == litteralDouble)
 			std::cout << "        |  -" << MAGENTA << " float  " << RESET << ": " << BLUE << static_cast<float>(litteralDouble) << ".0f" << RESET << std::endl;
 		else
@@ -137,7 +137,7 @@ void ScalarConverter::ConvertToChar(double const litteralDouble)
 void ScalarConverter::ConvertToDouble(double const litteralDouble)
 {
 	int checkDecimal = static_cast<int>(litteralDouble);
-	if (static_cast<double>(checkDecimal) == litteralDouble && litteralDouble < 999999 && litteralDouble > -999999)
+	if (static_cast<double>(checkDecimal) == litteralDouble && litteralDouble <= 999999 && litteralDouble >= -999999)
 		std::cout << "        |  -" << MAGENTA << " Double " << RESET << ": " << BLUE << static_cast<double>(litteralDouble) << ".0" << RESET << std::endl;
 	else
 		std::cout << "        |  -" << MAGENTA << " Double " << RESET << ": " << BLUE << static_cast<double>(litteralDouble) << RESET << std::endl;
