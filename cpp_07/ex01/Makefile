@@ -6,11 +6,11 @@
 #    By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 14:54:22 by acarlott          #+#    #+#              #
-#    Updated: 2023/12/18 17:33:16 by acarlott         ###   ########lyon.fr    #
+#    Updated: 2023/12/18 17:52:20 by acarlott         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = StartWithFewFunctions
+NAME = Iter
 
 CFLAGS = -std=c++98 -Wall -Wextra -Werror
 
@@ -32,7 +32,7 @@ $(OBJS_DIR)%.o:	$(SRCS_DIR)%.cpp | $(OBJS_DIR)
 all : ${NAME}
 
 ${NAME} : ${OBJS}
-	echo "\033[1;34mCreate: \033[1;33mStartWithFewFunctions"
+	echo "\033[1;34mCreate: \033[1;33mIter"
 	${CC} ${CFLAGS} ${OBJS} -o ${NAME}
 	echo "\033[1;32mSucces !"
 
