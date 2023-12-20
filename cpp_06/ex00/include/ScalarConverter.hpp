@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:00:12 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/15 13:56:27 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/21 00:07:33 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,15 @@
 #define MAGENTA "\033[35m"
 #define CYAN "\033[36m"
 
+#define INT 1
+#define CHAR 2
+#define FLOAT 3
+#define DOUBLE 4
+
 #include <iostream>
 #include <cstdlib>
 #include <limits>
+#include <string>
 
 class ScalarConverter
 {
@@ -34,7 +40,8 @@ private:
 	~ScalarConverter();
 
 	ScalarConverter &operator=(ScalarConverter const &src);
-	static bool ConvertParser(std::string *l_str);
+	static void PrintConvert(int i, float f, double d, char c);
+	static bool ConvertParser(std::string *l_str, unsigned int *type);
 	static void ConvertToInt(double const litteralDouble);
 	static void ConvertToFloat(double const litteralDouble);
 	static void ConvertToChar(double const litteralDouble);
