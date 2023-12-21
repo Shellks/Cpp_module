@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:01:26 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/21 14:40:00 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/21 14:50:31 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,33 +61,30 @@ bool ScalarConverter::ConvertParser(std::string *l_str, unsigned int *type)
 {
 	if (l_str->empty())
 		return (false);
-	std::string::size_type trim_start = l_str->find_first_not_of(" \t");
-	if (trim_start == std::string::npos)
-	{
+	size_t trim_start = l_str->find_first_not_of(" \t\n\v\f\r");
+	if (trim_start == std::string::npos) {
 		if (l_str->size() > 1)
 			return (false);
-		else
+		else {
+			*type = CHAR;
 			return (true);
+		}
 	}
-	std::string::size_type trim_end = l_str->find_last_not_of(" \t");
+	size_t trim_end = l_str->find_last_not_of(" \t\n\v\f\r");
 	*l_str = l_str->substr(trim_start);
 	*l_str = l_str->substr(0, trim_end + 1);
-	if (l_str->size() == 1 && static_cast<unsigned char>(l_str->at(0)) <= 127 && l_str->find_first_of("0123456789") == std::string::npos)
-	{
+	if (l_str->size() == 1 && static_cast<unsigned char>(l_str->at(0)) <= 127 && l_str->find_first_of("0123456789") == std::string::npos) {
 		*type = CHAR;
 		return (true);
 	}
 	if (l_str->find_first_not_of("0123456789.-+inaf") != std::string::npos)
 		return (false);
-	if (l_str->find_first_of("ain") != std::string::npos)
-	{
+	if (l_str->find_first_of("ain") != std::string::npos) {
 		std::string tab[7] = {"-inff", "-inf", "+inff", "+inf", "nanf", "nan"};
-		for (int i = 0; i <= 6; i++)
-		{
+		for (int i = 0; i <= 6; i++) {
 			if (i == 6)
 				return (false);
-			if (!l_str->compare(tab[i]))
-			{
+			if (!l_str->compare(tab[i])) {
 				if (tab[i].compare("-inff") || tab[i].compare("+inff") || tab[i].compare("nanf"))
 					*type = FLOAT;
 				else
@@ -105,7 +102,6 @@ bool ScalarConverter::ConvertParser(std::string *l_str, unsigned int *type)
 			if (*it == 'f')
 				f_count++;;
 		}
-		std::cout << point_count << std::endl;
 		if (point_count == 1 && !l_str->c_str()[l_str->find(".") - 1])
 			return (false);
 		if (l_str->size() != (l_str->find("f") + 1) || point_count != 1 || f_count != 1 || l_str->find_first_of("0123456789") == std::string::npos)
@@ -113,8 +109,7 @@ bool ScalarConverter::ConvertParser(std::string *l_str, unsigned int *type)
 		*type = FLOAT;
 		return (true);
 	}
-	if (l_str->find(".") != std::string::npos && l_str->find("f") == std::string::npos)
-	{
+	if (l_str->find(".") != std::string::npos && l_str->find("f") == std::string::npos) {
 		size_t pos = l_str->find(".");
 		int point_count = 0;
 		for (size_t i = 0; i < l_str->length(); i++) {
@@ -137,13 +132,11 @@ void ScalarConverter::ConvertType(std::string l_str, unsigned int type, int *i, 
 	switch (type)
 	{
 		case INT:
-			if (strtod(l_str.c_str(), NULL) >= std::numeric_limits<int>::max() || strtod(l_str.c_str(), NULL) <= std::numeric_limits<int>::min())
-			{
+			if (strtod(l_str.c_str(), NULL) >= std::numeric_limits<int>::max() || strtod(l_str.c_str(), NULL) <= std::numeric_limits<int>::min()) {
 				*d = strtod(l_str.c_str(), NULL);
 				*i = static_cast<int>(*d);
 			}
-			else
-			{
+			else {
 				*i = std::atoi(l_str.c_str());
 				*d = static_cast<double>(*i);
 			}
@@ -152,13 +145,11 @@ void ScalarConverter::ConvertType(std::string l_str, unsigned int type, int *i, 
 			*f = static_cast<float>(*i);
 			break;
 		case FLOAT:
-			if (strtod(l_str.c_str(), NULL) >= std::numeric_limits<double>::max() || strtod(l_str.c_str(), NULL) <= std::numeric_limits<double>::min())
-			{
+			if (strtod(l_str.c_str(), NULL) >= std::numeric_limits<double>::max() || strtod(l_str.c_str(), NULL) <= std::numeric_limits<double>::min()) {
 				*d = strtod(l_str.c_str(), NULL);
 				*f = static_cast<float>(*d);
 			}
-			else
-			{
+			else {
 				*f = std::atof(l_str.c_str());
 				*d = static_cast<double>(*f);
 			}
