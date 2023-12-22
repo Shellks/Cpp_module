@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 11:25:36 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/18 11:32:52 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/21 15:17:08 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,36 @@ void identify(Base* p)
 
 void identify(Base& p) 
 {
+	Base	test;
+	bool	isCatch = false;
 	std::cout << YELLOW << "Identify by reference" << RESET << ":" << std::endl;
-	if (dynamic_cast<A *>(&p) != NULL)
+	try
+	{
+		test = dynamic_cast<A &>(p);
 		std::cout << "	- " << CYAN << "Generated class" << RESET << " : " << YELLOW << "A" << RESET << std::endl;
-	else if (dynamic_cast<B *>(&p) != NULL)
+		return;
+	}
+	catch (...) {
+		isCatch = true;
+	}
+	try
+	{
+		test = dynamic_cast<B &>(p);
 		std::cout << "	- " << CYAN << "Generated class" << RESET << " : " << YELLOW << "B" << RESET << std::endl;
-	else if (dynamic_cast<C *>(&p) != NULL)
+		return;
+	}
+	catch (...) {
+		isCatch = true;
+	}
+	try
+	{
+		test = dynamic_cast<C &>(p);
 		std::cout << "	- " << CYAN << "Generated class" << RESET << " : " << YELLOW << "C" << RESET << std::endl;
+		return;
+	}
+	catch (...) {
+		isCatch = true;
+	}
+	if (isCatch == true)
+		std::cerr << RED << "Error with dynamic cast !" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 15:00:12 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/21 00:07:33 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/21 14:20:01 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 #include <cstdlib>
 #include <limits>
 #include <string>
+#include <cmath>
 
 class ScalarConverter
 {
@@ -40,12 +41,12 @@ private:
 	~ScalarConverter();
 
 	ScalarConverter &operator=(ScalarConverter const &src);
-	static void PrintConvert(int i, float f, double d, char c);
+	static void ConvertType(std::string l_str, unsigned int type, int *i, float *f, double *d, char *c);
 	static bool ConvertParser(std::string *l_str, unsigned int *type);
-	static void ConvertToInt(double const litteralDouble);
-	static void ConvertToFloat(double const litteralDouble);
-	static void ConvertToChar(double const litteralDouble);
-	static void ConvertToDouble(double const litteralDouble);
+	static void PrintInt(int i, double d);
+	static void PrintFloat(float f, double d);
+	static void PrintChar(char c, int i);
+	static void PrintDouble(double d);
 
 public:
 	static void convert(std::string litteralString);
