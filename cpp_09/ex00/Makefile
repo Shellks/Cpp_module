@@ -6,7 +6,7 @@
 #    By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/19 17:24:19 by acarlott          #+#    #+#              #
-#    Updated: 2023/12/19 17:25:30 by acarlott         ###   ########lyon.fr    #
+#    Updated: 2023/12/21 19:27:55 by acarlott         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS_DIR = src/
 OBJS_DIR = .objs/
 
 SRCS =	main.cpp \
+		BitcoinExchange.cpp
 
 OBJS = $(addprefix $(OBJS_DIR), ${SRCS:.cpp=.o})
 
