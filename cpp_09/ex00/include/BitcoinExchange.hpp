@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:25:45 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/21 22:57:18 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/22 14:33:09 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,21 @@
 #include <fstream>
 #include <sstream>
 #include <cstdlib>
+#include <regex>
 
-typedef typename std::map<std::string, float> DataBase;
-typedef typename DataBase::iterator iterator;
+typedef std::map<std::string, float> DataBase;
+typedef DataBase::iterator iterator;
 
 class BitcoinExchange
 {
 private:
 	DataBase _dataCsv;
 	DataBase _dataUser;
-	const char	* _fileUser;
-	const char	* _fileCsv;
 	
+	bool	_isValideDate(std::string const &date);
+	std::string	_trimParser(std::string toTrim);
 	void	_parseDbCsv(void);
-	void	_parseDbUser(void);
+	void	_parseDbUser(const char *file);
 
 public:
 	BitcoinExchange();
@@ -57,6 +58,11 @@ public:
 			virtual const char *what(void) const throw();
 	};
 	class EmptyFileException : public std::exception
+	{
+		public:
+			virtual const char *what(void) const throw();
+	};
+	class BadFileException : public std::exception
 	{
 		public:
 			virtual const char *what(void) const throw();
