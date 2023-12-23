@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:25:45 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/23 09:19:40 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/23 10:07:17 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 #include <sstream>
 #include <cstdlib>
 
-typedef std::map<std::string, float> DataBase;
+typedef std::multimap<std::string, float> DataBase;
 typedef DataBase::iterator iterator;
 
 class BitcoinExchange

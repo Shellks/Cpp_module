@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:25:52 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/23 09:26:13 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/23 10:24:52 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,18 @@ void	BitcoinExchange::_printBtcValue(void)
 	float result;
 	
 	for (iterator it1 = this->_dataUser.begin(); it1 != this->_dataUser.end(); it1++) {
+		// if (this->_isValidInput(it1.first, it1->second) == false)
 		iterator it2 = this->_dataCsv.find(it1->first);
 		if (it2 != this->_dataCsv.end()) {
-			result = it2->second * it1->second;
+			result = it1->second * it2->second;
 			std::cout << CYAN << it1->first << RESET << " => " << CYAN << it1->second << RESET << " = " << CYAN << result << RESET << std::endl;
 		}
 		else {
 			iterator itlower = this->_dataCsv.lower_bound(it1->first);
 			if (itlower != this->_dataCsv.begin()) {
-				itlower--;
-			std::cout << "test" << std::endl;
-			std::cout << CYAN << itlower->first << RESET << " => " << CYAN << itlower->second << RESET << " = " << CYAN << result << RESET << std::endl;
+				--itlower;
+			result = it1->second * itlower->second;
+			std::cout << CYAN << it1->first << RESET << " => " << CYAN << it1->second << RESET << " = " << CYAN << result << RESET << std::endl;
 			}
 		}
 	}
@@ -116,8 +117,8 @@ void	BitcoinExchange::_parseDbUser(const char *file)
 		while (std::getline(strStream, date, '|') && std::getline(strStream, amount, '\n')) {
 			date = this->_trimParser(date);
 			amount = this->_trimParser(amount);
-			if (this->_isValidInput(date, amount) == false)
-				throw (BitcoinExchange::BadFileException());
+			// if (this->_isValidInput(date, amount) == false)
+			// 	throw (BitcoinExchange::BadFileException());
 			this->_dataUser.insert(std::make_pair(date, std::atof(amount.c_str())));
 		}
 		for (iterator it = this->_dataUser.begin(); it != this->_dataUser.end(); it++) {
@@ -141,6 +142,51 @@ std::string	BitcoinExchange::_trimParser(std::string toTrim)
 	toTrim = toTrim.substr(trim_start);
 	toTrim = toTrim.substr(0, trim_end + 1);
 	return (toTrim);
+}
+
+bool	BitcoinExchange::_isValidInput(std::string const &date, std::string const &amount)
+{
+	if (date.size() != 10 || date[4] != '-' || date[7] != '-' || \
+	std::atof(date.c_str()) > 2024 || std::atof(date.c_str()) < 2009 || \
+	std::atof(&date.c_str()[5]) > 12 || std::atof(&date.c_str()[5]) < 1 || \
+	std::atof(&date.c_str()[8]) > 31 || std::atof(&date.c_str()[8]) < 1 || \
+	(std::atof(date.c_str()) == 2009 && std::atof(&date.c_str()[8]) < 2)) {
+		std::cout << RED << "Error: bad input => " << date << RESET << std::endl;
+		return (false);
+	}
+	for (size_t i = 0; i < date.size(); i++) {
+		if (i != 4 && i != 7 && !std::isdigit(date[i])) {
+			std::cout << RED << "Error: bad input => " << date << RESET << std::endl;
+			return (false);
+		}
+		if (i < amount.size() && !std::isdigit(amount[i]) && amount[i] != '.') {
+			std::cout << RED << "Error: bad input => " << amount << RESET << std::endl;
+			return (false);
+		}
+	}
+	size_t	count = 0;
+	for (size_t i = 0; i < amount.size(); i++) {
+		if (i == 0 && amount[i] == '.') {
+			std::cout << RED << "Error: bad input => " << amount << RESET << std::endl;
+			return (false);
+		}
+		if (amount[i] == '.')
+			count++;
+	}
+	if (std::atof(amount.c_str()) > 1000) {
+		std::cout << RED << "Error: too large number" << amount << RESET << std::endl;
+		return (false);
+	}
+	else if (std::atof(amount.c_str()) < 0) {
+		std::cout << RED << "Error: not a positive number" << amount << RESET << std::endl;
+		return (false);
+	}
+	if (count > 1 || std::atof(amount.c_str()) < 0 || std::atof(amount.c_str()) > 1000 || \
+		(date.find_first_not_of("0123456789-") != std::string::npos && amount.find_first_not_of("0123456789.")  != std::string::npos)) {
+			std::cout << RED << "Error: bad input => " << amount << RESET << std::endl;
+			return (false);
+		}
+	return (true);
 }
 
 bool	BitcoinExchange::_isValidInput(std::string const &date, std::string const &amount)
