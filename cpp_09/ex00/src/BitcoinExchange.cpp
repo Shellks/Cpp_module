@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:25:52 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/22 14:34:13 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/23 09:26:13 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,40 @@ BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &src)
 ** --------------------------------- METHODS ----------------------------------
 */
 
+void	BitcoinExchange::_printBtcValue(void)
+{
+	float result;
+	
+	for (iterator it1 = this->_dataUser.begin(); it1 != this->_dataUser.end(); it1++) {
+		iterator it2 = this->_dataCsv.find(it1->first);
+		if (it2 != this->_dataCsv.end()) {
+			result = it2->second * it1->second;
+			std::cout << CYAN << it1->first << RESET << " => " << CYAN << it1->second << RESET << " = " << CYAN << result << RESET << std::endl;
+		}
+		else {
+			iterator itlower = this->_dataCsv.lower_bound(it1->first);
+			if (itlower != this->_dataCsv.begin()) {
+				itlower--;
+			std::cout << "test" << std::endl;
+			std::cout << CYAN << itlower->first << RESET << " => " << CYAN << itlower->second << RESET << " = " << CYAN << result << RESET << std::endl;
+			}
+		}
+	}
+}
+
+void	BitcoinExchange::btcParser(char *file)
+{
+	try {
+		this->_parseDbUser(file);
+		this->_parseDbCsv();
+		this->_printBtcValue();
+	}
+	catch(const std::exception& e) {
+		std::cerr << RED << "Error: " << e.what() << RESET << std::endl;
+	}
+	
+}
+
 void	BitcoinExchange::_parseDbCsv()
 {
 	std::string	path = "ressource/data.csv";
@@ -59,11 +93,6 @@ void	BitcoinExchange::_parseDbCsv()
 			else
 				throw (BitcoinExchange::BadFileException());
 		}
-		for (iterator it = this->_dataCsv.begin(); it != this->_dataCsv.end(); it++) {
-			
-			std::cout << YELLOW << "Clé: " << CYAN << it->first << YELLOW << " Valeur: " << CYAN << it->second << RESET << std::endl;
-		}
-		std::cout << MAGENTA << "********************************" << RESET << std::endl;
 	}
 	else
 	{
@@ -71,30 +100,6 @@ void	BitcoinExchange::_parseDbCsv()
 		throw(BitcoinExchange::EmptyFileException());
 	}
 	fileStream.close();
-}
-
-bool	BitcoinExchange::_isValideDate(std::string const &date)
-{
-	if (date.size() != 10)
-		return (false);
-	if (date[4] != '-' || date[7] != '-')
-		return (false);
-	for (int i = 0; i < date.size(); i++) {
-		if (i != 4 && i != 7 && !std::isdigit(date[i]))
-			return (false);
-	}
-	return (true);
-}
-
-std::string	BitcoinExchange::_trimParser(std::string toTrim)
-{
-	size_t trim_start = toTrim.find_first_not_of(" ");
-	if (trim_start == std::string::npos)
-		throw(BitcoinExchange::EmptyFileException());
-	size_t trim_end = toTrim.find_last_not_of(" ");
-	toTrim = toTrim.substr(trim_start);
-	toTrim = toTrim.substr(0, trim_end + 1);
-	return (toTrim);
 }
 
 void	BitcoinExchange::_parseDbUser(const char *file)
@@ -111,12 +116,9 @@ void	BitcoinExchange::_parseDbUser(const char *file)
 		while (std::getline(strStream, date, '|') && std::getline(strStream, amount, '\n')) {
 			date = this->_trimParser(date);
 			amount = this->_trimParser(amount);
-			if (this->_isValideDate(date) == false || std::atof(amount.c_str()) < 0 || std::atof(amount.c_str()) > 1000)
+			if (this->_isValidInput(date, amount) == false)
 				throw (BitcoinExchange::BadFileException());
-			if (date.find_first_not_of("0123456789-") == std::string::npos && amount.find_first_not_of("0123456789.")  == std::string::npos)
-				this->_dataUser.insert(std::make_pair(date, std::atof(amount.c_str())));
-			else
-				throw (BitcoinExchange::BadFileException());
+			this->_dataUser.insert(std::make_pair(date, std::atof(amount.c_str())));
 		}
 		for (iterator it = this->_dataUser.begin(); it != this->_dataUser.end(); it++) {
 				std::cout << YELLOW << "Date: " << CYAN << it->first << YELLOW << " Amount: " << CYAN << it->second << RESET << std::endl;
@@ -130,32 +132,60 @@ void	BitcoinExchange::_parseDbUser(const char *file)
 	}
 }
 
-void	BitcoinExchange::btcParser(char *file)
+std::string	BitcoinExchange::_trimParser(std::string toTrim)
 {
-	try {
-		this->_parseDbUser(file);
-		//this->_parseDbCsv();
-	}
-	catch(const std::exception& e) {
-		std::cerr << RED << "Error: " << e.what() << RESET << std::endl;
-	}
-	
+	size_t trim_start = toTrim.find_first_not_of(" ");
+	if (trim_start == std::string::npos)
+		throw(BitcoinExchange::EmptyFileException());
+	size_t trim_end = toTrim.find_last_not_of(" ");
+	toTrim = toTrim.substr(trim_start);
+	toTrim = toTrim.substr(0, trim_end + 1);
+	return (toTrim);
 }
+
+bool	BitcoinExchange::_isValidInput(std::string const &date, std::string const &amount)
+{
+	if (date.size() != 10 || date[4] != '-' || date[7] != '-' || \
+	std::atof(date.c_str()) > 2024 || std::atof(date.c_str()) < 2009 || \
+	std::atof(&date.c_str()[5]) > 12 || std::atof(&date.c_str()[5]) < 1 || \
+	std::atof(&date.c_str()[8]) > 31 || std::atof(&date.c_str()[8]) < 1 || \
+	(std::atof(date.c_str()) == 2009 && std::atof(&date.c_str()[8]) < 2))
+		return (false);
+	for (size_t i = 0; i < date.size(); i++) {
+		if (i != 4 && i != 7 && !std::isdigit(date[i]))
+			return (false);
+		if (i < amount.size() && !std::isdigit(amount[i]) && amount[i] != '.')
+			return (false);
+	}
+	size_t	count = 0;
+	for (size_t i = 0; i < amount.size(); i++) {
+		if (i == 0 && amount[i] == '.')
+			return (false);
+		if (amount[i] == '.')
+			count++;
+	}
+	if (count > 1 || std::atof(amount.c_str()) < 0 || std::atof(amount.c_str()) > 1000 || \
+		(date.find_first_not_of("0123456789-") != std::string::npos && amount.find_first_not_of("0123456789.")  != std::string::npos))
+		return (false);
+	return (true);
+}
+
+
 /*
 ** --------------------------------- EXCEPTION ----------------------------------
 */
 
 const char *BitcoinExchange::FileNotExistException::what(void) const throw()
 {
-	return ("Invalid File");
+	return ("Invalid file");
 }
 
 const char *BitcoinExchange::EmptyFileException::what(void) const throw()
 {
-	return ("Empty File");
+	return ("Empty file");
 }
 
 const char *BitcoinExchange::BadFileException::what(void) const throw()
 {
-	return ("Bad File format");
+	return ("Bad file format: \"date | amount\"\n-date: \"Year-Month-Day\"\n-amount: \"int/float\"");
 }

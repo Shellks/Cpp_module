@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:25:45 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/22 14:33:09 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2023/12/23 09:19:40 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 #include <fstream>
 #include <sstream>
 #include <cstdlib>
-#include <regex>
 
 typedef std::map<std::string, float> DataBase;
 typedef DataBase::iterator iterator;
@@ -38,10 +37,11 @@ private:
 	DataBase _dataCsv;
 	DataBase _dataUser;
 	
-	bool	_isValideDate(std::string const &date);
+	bool	_isValidInput(std::string const &date, std::string const &amount);
 	std::string	_trimParser(std::string toTrim);
 	void	_parseDbCsv(void);
 	void	_parseDbUser(const char *file);
+	void	_printBtcValue(void);
 
 public:
 	BitcoinExchange();
