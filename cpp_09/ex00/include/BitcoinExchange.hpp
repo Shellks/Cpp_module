@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:25:45 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/23 10:07:17 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/01/05 15:08:26 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,21 @@
 #include <fstream>
 #include <sstream>
 #include <cstdlib>
+#include <cfloat>
 
-typedef std::multimap<std::string, float> DataBase;
+typedef std::map<std::string, float> DataBase;
 typedef DataBase::iterator iterator;
 
 class BitcoinExchange
 {
 private:
-	DataBase _dataCsv;
-	DataBase _dataUser;
+	DataBase _data;
 	
-	bool	_isValidInput(std::string const &date, std::string const &amount);
+	bool		_isValidInput(std::string const &date, std::string const &amount);
 	std::string	_trimParser(std::string toTrim);
-	void	_parseDbCsv(void);
-	void	_parseDbUser(const char *file);
-	void	_printBtcValue(void);
+	void		_parseDbCsv(void);
+	void		_parseDbUser(const char *file);
+	void		_printBtcValue(std::string const date, std::string const amount);
 
 public:
 	BitcoinExchange();
