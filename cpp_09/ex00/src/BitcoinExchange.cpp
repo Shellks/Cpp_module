@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:25:52 by acarlott          #+#    #+#             */
-/*   Updated: 2024/01/05 15:48:31 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/01/05 16:26:21 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ void	BitcoinExchange::_parseDbUser(const char *file)
 			this->_printBtcValue(date, "null");
 		}
 	}
-	std::cout << MAGENTA << "********************************" << RESET << std::endl;
 	fileStream.close();
 }
 
@@ -127,6 +126,11 @@ void	BitcoinExchange::_printBtcValue(std::string const date, std::string const a
 			result = std::atof(amount.c_str()) * itlower->second;
 			std::cout << date << " => " << amount <<  " = " << result << std::endl;
 		}
+		else {
+			iterator itupper = this->_data.upper_bound(date);
+			result = std::atof(amount.c_str()) * itupper->second;
+			std::cout << date << " => " << amount <<  " = " << result << std::endl;
+		}
 	}
 }
 
@@ -136,11 +140,7 @@ bool	BitcoinExchange::_isValidInput(std::string const &date, std::string const &
 		std::cout << "Error: bad input => " << date << std::endl;
 		return (false);
 	}
-	if (date.size() != 10 || date[4] != '-' || date[7] != '-' || \
-	std::atof(date.c_str()) > 2024 || std::atof(date.c_str()) < 2009 || \
-	std::atof(&date.c_str()[5]) > 12 || std::atof(&date.c_str()[5]) < 1 || \
-	std::atof(&date.c_str()[8]) > 31 || std::atof(&date.c_str()[8]) < 1 || \
-	(std::atof(date.c_str()) == 2009 && std::atof(&date.c_str()[8]) < 2)) {
+	if (date.size() != 10 || date[4] != '-' || date[7] != '-') {
 		std::cout << "Error: bad input => " << date << " | " << amount << std::endl;
 		return (false);
 	}
@@ -149,16 +149,13 @@ bool	BitcoinExchange::_isValidInput(std::string const &date, std::string const &
 			std::cout << "Error: bad input => " << date << " | " << amount << std::endl;
 			return (false);
 		}
-		if (i < amount.size() && !std::isdigit(amount[i]) && amount[i] != '.' && amount[i] != '-') {
-			std::cout << "Error: bad input => " << date << " | " << amount << std::endl;
-			return (false);
-		}
 	}
 	size_t	count = 0;
 	for (size_t i = 0; i < amount.size(); i++) {
 		if (amount[i] == '.')
 			count++;
-		if ((i == 0 && amount[i] == '.') || count > 1) {
+		if ((i == 0 && amount[i] == '.') || count > 1 || \
+		(!std::isdigit(amount[i]) && amount[i] != '.' && amount[i] != '-')) {
 			std::cout << "Error: bad input => " << date << " | " << amount << std::endl;
 			return (false);
 		}
