@@ -6,26 +6,24 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:24:28 by acarlott          #+#    #+#             */
-/*   Updated: 2024/01/06 16:43:24 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/01/07 09:52:45 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/RPN.hpp"
+#include "../include/PmergeMe.hpp"
 
 int main(int argc, char **argv)
 {
-	
-	if (argc != 2) {
-		std::cout << RED << "ERROR:" << BLUE << " only one argument expected \"./RPN 'RPN calcul'\"" << RESET << std::endl;
+	if (argc == 1) {
+		std::cout << RED << PREFIX_ERROR << RESET << "expected argument \"./PmergeMe 'integers'... \"" << std::endl;
 		return (1);
 	}
 	try {
-		int result = RPNCalculator(argv[1]);
-		std::cout << CYAN << result << RESET << std::endl;
+		PmergeMe	sequence(&argv[1]);
 	}
 	catch (const std::exception &e) {
 		std::cout << RED << PREFIX_ERROR << e.what() << RESET << std::endl;
-		return (0);
+		return (1);
 	}
-	return (1);
+	return (0);
 }
