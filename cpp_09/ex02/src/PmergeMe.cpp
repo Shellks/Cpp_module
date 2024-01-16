@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 09:08:23 by acarlott          #+#    #+#             */
-/*   Updated: 2024/01/15 19:48:20 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/01/16 18:13:39 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,7 @@ PmergeMe::PmergeMe()
 PmergeMe::PmergeMe(char **args)
 {
 	this->_PmergeMeParser(args);
-	std::cout << "vector: before: " << std::endl;
-	for (std::vector<int>::iterator it = _vector.begin(); it != _vector.end(); ++it) {
-	std::cout << "- " << *it << std::endl;
-	};
-	this->_SortVector(this->_vector);
-	std::cout << "vector: after: " << std::endl;
-	for (std::vector<int>::iterator it = _vector.begin(); it != _vector.end(); ++it) {
-	std::cout << "- " << *it << std::endl;
-	};
-	std::cout << "list: before: " << std::endl;
-	for (std::list<int>::iterator it = _list.begin(); it != _list.end(); ++it) {
-		std::cout << "- " << *it << std::endl;
-	};
-	this->_SortList(this->_list);
-	std::cout << "list: after: " << std::endl;
-	for (std::list<int>::iterator it = _list.begin(); it != _list.end(); ++it) {
-		std::cout << "- " << *it << std::endl;
-	};
+	this->_PmergeMeSort(args);
 }
 
 PmergeMe::PmergeMe(PmergeMe const &src)
@@ -66,6 +49,34 @@ PmergeMe &PmergeMe::operator=(PmergeMe const &src)
 ** --------------------------------- METHODS ---------------------------------
 */
 
+void	PmergeMe::_PmergeMeSort(char **args)
+{
+	std::cout << "Before: " << std::flush;
+	for (char **tab = args; *tab; tab++) {
+		this->_vector.push_back((std::atoi(*tab)));
+		std::cout << this->_vector.back() << " " << std::flush;
+	}
+	this->_vector.clear();
+	std::cout << std::endl;
+	clock_t startTime = clock();
+	for (char **tab = args; *tab; tab++)
+		this->_vector.push_back((std::atoi(*tab)));
+	this->_SortVector(this->_vector);
+	clock_t endTime = clock();
+	std::cout << "After: " << std::flush;
+	for (std::vector<int>::iterator it = _vector.begin(); it != _vector.end(); it++)
+		std::cout << *it << " " << std::flush;
+	std::cout << std::endl;
+	double	execTime = static_cast<double>(endTime - startTime) / CLOCKS_PER_SEC;
+	std::cout << "Time to process a range of " << this->_vector.size() << " elements with std::vector : "  << std::fixed << std::setprecision(6) << execTime << " us" << std::endl;
+	startTime = clock();
+	for (char **tab = args; *tab; tab++)
+		this->_list.push_back((std::atoi(*tab)));
+	this->_SortList(this->_list);
+	endTime = clock();
+	execTime = static_cast<double>(endTime - startTime) / CLOCKS_PER_SEC;
+	std::cout << "Time to process a range of " << this->_list.size() << " elements with std::list : " << std::fixed << std::setprecision(6) << execTime << " us" << std::endl;
+}
 
 void	PmergeMe::_PmergeMeParser(char **args)
 {
@@ -88,8 +99,6 @@ void	PmergeMe::_PmergeMeParser(char **args)
 		size_check = strtod(*tab, NULL);
 		if (size_check < 0 || size_check > std::numeric_limits<int>::max())
 			throw(PmergeMe::OverflowSequenceException());
-		this->_list.push_back(static_cast<int>(size_check));
-		this->_vector.push_back(static_cast<int>(size_check));
 	}
 }
 

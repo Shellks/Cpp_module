@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 09:07:28 by acarlott          #+#    #+#             */
-/*   Updated: 2024/01/15 19:28:47 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/01/16 17:57:08 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #define PREFIX_ERROR "Error: PmergeMe: "
 
 #include <iostream>
+#include <iomanip> // std::fixed - std::precision
 #include <list> //std::list
 #include <vector> //std::vector
 #include <limits> //int min/max
@@ -27,6 +28,7 @@
 #include <cctype> //std::isdigit
 #include <cstdlib> //std::atoi
 #include <iterator> //std::next
+#include <ctime> //clock
 
 typedef std::vector<int> vector;
 typedef vector::iterator itVector;
@@ -42,6 +44,7 @@ class PmergeMe
 		PmergeMe();
 
 		void	_PmergeMeParser(char **args);
+		void	_PmergeMeSort(char **args);
 		void	_SortVector(vector &_vector);
 		void	_SortList(list &_list);
 		
