@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:02:27 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/18 20:46:53 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/01/17 15:47:56 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ int	main(void)
 {
 	{
 		try {
-			int * a = new int(); 
-			std::cout << a[10] << std::endl;
+			int * a = new int();
+			
+			std::cout << *a << std::endl;
+			delete a;
 		}
 		catch ( std::exception const &e)
 		{
