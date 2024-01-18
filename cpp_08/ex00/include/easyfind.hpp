@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:19:21 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/18 21:57:19 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/01/18 14:33:23 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,10 @@ class NoOccurenceException : public std::exception
 template< typename T>
 void easyfind(T const &container, int to_find)
 {
-	for (typename T::const_iterator it = container.begin(); it != container.end(); ++it)
-	{
-		if (*it == to_find)
-		{
-			std::cout << " - " << GREEN << "Found! " << CYAN << to_find << YELLOW << " in the container." << RESET << std::endl;
-			return;
-		}
-	}
-	throw(NoOccurenceException());
+	if (std::find(container.begin(), container.end(), to_find) == container.end())
+		throw(NoOccurenceException());
+	else
+		std::cout << " - " << GREEN << "Found! " << CYAN << to_find << YELLOW << " in the container." << RESET << std::endl;
 }
 
 

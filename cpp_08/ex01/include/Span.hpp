@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 10:18:21 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/19 14:05:51 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/01/18 16:16:21 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,13 @@
 #define RED "\033[31m"
 #define GREEN "\033[32m"
 #define YELLOW "\033[33m"
-#define BLUE "\033[34m"
 #define MAGENTA "\033[35m"
 #define CYAN "\033[36m"
 
 #include <iostream>
 #include <vector>
-#include <limits>
-#include <ctime>
-#include <algorithm>
+#include <numeric> //std::adjacent_difference
+#include <algorithm> // STL
 
 class Span
 {
@@ -44,8 +42,8 @@ public:
 
 	void addNumber(unsigned int number);
 	void addNumber(int * tab, unsigned int number);
-	unsigned int shortestSpan(void);
-	unsigned int longestSpan(void);
+	int shortestSpan(void);
+	int longestSpan(void);
 	
 	class MaxSizeException : public std::exception
 	{

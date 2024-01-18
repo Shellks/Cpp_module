@@ -6,11 +6,12 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 10:19:30 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/19 14:01:14 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/01/18 16:19:07 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Span.hpp"
+
 
 Span::Span()
 {
@@ -18,7 +19,6 @@ Span::Span()
 
 Span::Span(unsigned int sizeMax) : _sizeMax(sizeMax)
 {
-	std::cout << "-" << GREEN << "Container created" << RESET << " ! he have a size of " << CYAN << this->_sizeMax << RESET << std::endl;
 }
 
 Span::Span(Span const &src)
@@ -61,29 +61,28 @@ void Span::addNumber(int *newTab, unsigned int size)
 		std::cout << " -" << GREEN << "Adding" << RESET << " '" << CYAN << newTab[i] << RESET << "' to " << YELLOW << "container" << RESET << std::endl;
 }
 
-unsigned int Span::shortestSpan(void)
+int Span::shortestSpan(void)
 {
 	std::vector<int>	sorted_tab = this->_tab;
-	int					smallestSpan = std::numeric_limits<int>::max();
-	
+	std::vector<int>	difference_tab(this->_tab);
+	int					smallestSpan;
+
 	if (this->_tab.size() < 2)
 		throw(Span::NotEnoughNumberException());
-
 	std::sort(sorted_tab.begin(), sorted_tab.end());
-	for (std::vector<int>::iterator it = (sorted_tab.begin() + 1); it < sorted_tab.end(); it++)
-		if ((*it - *(it - 1)) < smallestSpan)
-			smallestSpan = (*it - *(it - 1));
-	return (static_cast<unsigned int>(smallestSpan));
+	std::adjacent_difference(sorted_tab.begin(), sorted_tab.end(), difference_tab.begin());
+	smallestSpan = *std::min_element(difference_tab.begin() + 1, difference_tab.end());
+	return (smallestSpan);
 }
-unsigned int Span::longestSpan(void)
+int Span::longestSpan(void)
 {
 	std::vector<int>	sorted_tab = this->_tab;
-	
+
 	if (this->_tab.size() < 2)
 		throw(Span::NotEnoughNumberException());
 
 	std::sort(sorted_tab.begin(), sorted_tab.end());
-	return (static_cast<unsigned int>(sorted_tab[sorted_tab.size() - 1] - sorted_tab[0]));
+	return (sorted_tab[sorted_tab.size() - 1] - sorted_tab[0]);
 }
 /*
 ** --------------------------------- EXCEPTION ----------------------------------

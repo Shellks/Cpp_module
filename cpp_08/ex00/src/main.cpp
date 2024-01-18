@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 21:18:42 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/18 21:58:27 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/01/18 14:33:52 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main(void)
 	{
 		try
 		{
-			unsigned int to_find = 9;
+			unsigned int to_find = 42;
 			std::vector<int> intContainers;
 
 			intContainers.push_back(42);
