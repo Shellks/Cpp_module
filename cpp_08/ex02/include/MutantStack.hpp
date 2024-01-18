@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:36:22 by acarlott          #+#    #+#             */
-/*   Updated: 2023/12/19 17:03:29 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/01/18 22:52:39 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,12 @@ class MutantStack : public std::stack<T>
 				*this = src;
 		}
 		typedef typename std::stack<T>::container_type::iterator iterator;
-		iterator	begin(void) { return iterator(std::stack<T>::c.begin());}
-		iterator	end(void) {return iterator(std::stack<T>::c.end());}
+		iterator	begin(void) {
+			return iterator(MutantStack<T>::c.begin());
+		};
+		iterator	end(void) {
+			return iterator(MutantStack<T>::c.end());
+		};
 };
 
 
