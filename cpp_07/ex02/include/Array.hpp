@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:04:00 by acarlott          #+#    #+#             */
-/*   Updated: 2024/01/17 15:48:28 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/01/17 20:22:52 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,12 @@ class Array
 			}
 			return (*this);
 		}
-		T &operator[](unsigned int index) const {
+		T &operator[](unsigned int index){
+			if (index >= this->_array_size)
+				throw(Array::OutOfBoundException());
+			return (this->_array[index]);
+		}
+		T const &operator[](unsigned int index) const {
 			if (index >= this->_array_size)
 				throw(Array::OutOfBoundException());
 			return (this->_array[index]);

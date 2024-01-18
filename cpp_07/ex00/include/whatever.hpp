@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 15:11:42 by acarlott          #+#    #+#             */
-/*   Updated: 2024/01/17 14:23:56 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/01/17 20:14:06 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ void swap(T &x, T &y){
 }
 
 template<typename T>
-T const &max(T const &x, T const &y) {
+T &max(T &x, T &y) {
 	return ((x > y) ? x : y);
 }
 
 template<typename T>
-T const &min(T const &x, T const &y) {
+T &min(T &x, T &y) {
 	return ((x < y) ? x : y);
 }
 
