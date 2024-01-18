@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:35:55 by acarlott          #+#    #+#             */
-/*   Updated: 2024/01/18 13:07:05 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/01/18 19:58:56 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void iter(A *aray_tab, size_t array_size, F (*ft)(A &src))
 };
 
 template<typename A, typename F>
-void iter(A const *aray_tab, size_t array_size, F const (*ft)(A &src))
+void iter(A const *aray_tab, size_t array_size, F (*ft)(A const &src))
 {
 	for (size_t i = 0; i < array_size; i++)
 		ft(aray_tab[i]);
