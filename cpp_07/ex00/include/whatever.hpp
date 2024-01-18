@@ -6,12 +6,12 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 15:11:42 by acarlott          #+#    #+#             */
-/*   Updated: 2024/01/17 20:14:06 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/01/18 13:06:50 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef Whatever_HPP
-#define Whatever_HPP
+#ifndef WHATEVER_HPP
+#define WHATEVER_HPP
 
 #define RESET "\033[0m"
 #define RED "\033[31m"

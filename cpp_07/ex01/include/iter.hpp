@@ -6,12 +6,12 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 17:35:55 by acarlott          #+#    #+#             */
-/*   Updated: 2024/01/18 12:20:26 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/01/18 13:07:05 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef Whatever_HPP
-#define Whatever_HPP
+#ifndef ITER_HPP
+#define ITER_HPP
 
 #include <iostream>
 
