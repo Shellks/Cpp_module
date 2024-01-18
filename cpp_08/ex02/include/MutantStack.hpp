@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:36:22 by acarlott          #+#    #+#             */
-/*   Updated: 2024/01/18 22:52:39 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/01/18 23:49:32 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,28 @@ template<typename T>
 class MutantStack : public std::stack<T>
 {
 	public:
-		MutantStack() {}
-		MutantStack(MutantStack const &src) {
-			if (*this != src)
+		MutantStack() : std::stack<T>() {
+		}
+		MutantStack(MutantStack const &src) : std::stack<T>(src) {
+			if (*this != src) {
 				*this = src;
+			}
 		}
 		~MutantStack() {}
-	
+
+		typedef typename std::stack<T>::container_type::iterator iterator;
+		
 		MutantStack &operator=(MutantStack const &src) {
 			if (*this != src)
-				*this = src;
-		}
-		typedef typename std::stack<T>::container_type::iterator iterator;
+				std::stack<T>::operator=(src);
+			return *this;
+		};
+
 		iterator	begin(void) {
-			return iterator(MutantStack<T>::c.begin());
+			return iterator(this->c.begin());
 		};
 		iterator	end(void) {
-			return iterator(MutantStack<T>::c.end());
+			return iterator(this->c.end());
 		};
 };
 

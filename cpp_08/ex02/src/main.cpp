@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:34:05 by acarlott          #+#    #+#             */
-/*   Updated: 2024/01/18 22:45:56 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/01/18 23:58:33 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,15 +168,30 @@ int main()
 			++it;
 			i++;
 		}
-		std::stack<char> s(mstack);
-		// std::cout << GREEN << "StackCopy " << MAGENTA << "   |" << GREEN << " Vector " << RESET << std::endl;
-		// std::cout << GREEN << "content: " << MAGENTA << "    |" << GREEN << " content: " << RESET << std::endl;
-		// i = 0;
-		// while (!s.empty()) {
-		// 	std::cout << "-> " << CYAN << s.top() << RESET << "	     "<< MAGENTA << "|" << RESET << " -> " << CYAN << vstack[i] << RESET << std::endl;
-		// 	s.pop();
-		// 	i++;
-		// }
+		std::cout << MAGENTA << "******************************" << std::endl;
+		std::cout << MAGENTA << "TEST" << RESET << " - " << YELLOW << "COPY && EQUALS" << RESET << std::endl;
+		MutantStack<char> s(mstack);
+		s = mstack;
+		s.push('z');
+		while (!mstack.empty())
+			mstack.pop();
+		std::cout << GREEN << "StackEquals " << MAGENTA << " |" << GREEN << " Vector " << RESET << std::endl;
+		std::cout << GREEN << "content: " << MAGENTA << "    |" << GREEN << " content: " << RESET << std::endl;
+		i = 0;
+		MutantStack<char> copy(s);
+		while (!s.empty()) {
+			std::cout << "-> " << CYAN << s.top() << RESET << "	     "<< MAGENTA << "|" << RESET << " -> " << CYAN << vstack[i] << RESET << std::endl;
+			s.pop();
+			i++;
+		}
+		std::cout << GREEN << "StackCopy " << MAGENTA << "   |" << GREEN << " Vector " << RESET << std::endl;
+		std::cout << GREEN << "content: " << MAGENTA << "    |" << GREEN << " content: " << RESET << std::endl;
+		i = 0;
+		while (!copy.empty()) {
+			std::cout << "-> " << CYAN << copy.top() << RESET << "	     "<< MAGENTA << "|" << RESET << " -> " << CYAN << vstack[i] << RESET << std::endl;
+			copy.pop();
+			i++;
+		}
 		std::cout << MAGENTA << "**************************" << std::endl;
 	}
 }
