@@ -6,7 +6,7 @@
 #    By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/14 14:54:22 by acarlott          #+#    #+#              #
-#    Updated: 2023/12/18 17:52:20 by acarlott         ###   ########lyon.fr    #
+#    Updated: 2024/01/18 13:09:07 by acarlott         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS_DIR = src/
 
 OBJS_DIR = .objs/
 
-SRCS =	main.cpp \
+SRCS =	main.cpp
 
 OBJS = $(addprefix $(OBJS_DIR), ${SRCS:.cpp=.o})
 
