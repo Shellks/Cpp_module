@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 09:07:28 by acarlott          #+#    #+#             */
-/*   Updated: 2024/01/06 14:11:57 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/01/18 14:21:45 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,16 @@
 #include <stack> //std::stack
 #include <sstream> //std::istringstream
 #include <cstdlib> //std::atoi
+#include <limits> //int min limit
 
 int	RPNCalculator(std::string const calcul);
 
-class NotDigitException : public std::exception {
+class InvalidOperandException : public std::exception {
 	public:
 		virtual const char *what(void) const throw();
 };
 
-class InvalidOperandException : public std::exception {
+class InvalidOperatorException : public std::exception {
 	public:
 		virtual const char *what(void) const throw();
 };

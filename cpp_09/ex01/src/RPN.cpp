@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 09:08:23 by acarlott          #+#    #+#             */
-/*   Updated: 2024/01/06 15:12:32 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/01/18 14:23:14 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,27 @@ static void operatorManager(std::stack<int> *RPNStack, std::string const token, 
 		RPNStack->push(firstOperand / secondOperand);
 	}
 	nbOperator++;
-	// int finalOperand = RPNStack->top();
-	// std::cout << "first: " << firstOperand << " second: " << secondOperand << " operand: " << token[0] << " result: " << finalOperand << std::endl;
+}
+
+static void isValidCalcul(std::string token)
+{
+	for (size_t i = 0; i < token.size(); i++) {
+		if (token[i] == '(' && token.find(')') != std::string::npos)
+			throw(ParenthesisException());
+		else if (token.size() > 1 && token[i] == '-') {
+			if (token[i + 1] && std::isdigit(token[i + 1])) {
+				for (size_t j = i + 1; j < token.size(); j++)
+					if (!std::isdigit(token[j]))
+						throw(InvalidOperandException());
+			}
+			else
+				throw(InvalidOperandException());
+		}
+		else if (token.size() > 1 && !std::isdigit(token[i]))
+			throw(InvalidOperandException());
+		else if (token.size() == 1 && !std::isdigit(token[i]) && token.find_first_of("-+/*") == std::string::npos)
+			throw(InvalidOperatorException());
+	}
 }
 
 int	RPNCalculator(std::string const calcul)
@@ -48,24 +67,21 @@ int	RPNCalculator(std::string const calcul)
 	std::stack<int>		RPNStack;
 	std::istringstream	iss(calcul);
 	std::string			token;
+	double				size_check;
 	int					nbOperand = 0;
 	int					nbOperator = 0;
 	
 	while (iss >> token) {
-		for (size_t i = 0; i < token.size(); i++) {
-			if (token[i] == '(' && token.find(')') != std::string::npos)
-				throw(ParenthesisException());
-			else if (token.size() > 1 && !std::isdigit(token[i]))
-				throw(NotDigitException());
-			else if (token.size() == 1 && !std::isdigit(token[i]) && token.find_first_of("-+/*") == std::string::npos)
+		isValidCalcul(token);
+		if (token.size() == 1 && !std::isdigit(token[0]))
+			operatorManager(&RPNStack, token, &nbOperator);
+		else {
+			size_check = strtod(token.c_str(), NULL);
+			if (size_check > 9 || size_check < -9)
 				throw(InvalidOperandException());
-		}
-		if (std::isdigit(token[0])) {
-			RPNStack.push(std::atoi(token.c_str()));
+			RPNStack.push(static_cast<int>(size_check));
 			nbOperand++;
 		}
-		else
-			operatorManager(&RPNStack, token, &nbOperator);
 	}
 	if (nbOperator >= nbOperand || RPNStack.size() != 1)
 		throw(WrongCalculException());
@@ -76,11 +92,11 @@ int	RPNCalculator(std::string const calcul)
 ** --------------------------------- EXCEPTION ----------------------------------
 */
 
-const char *NotDigitException::what(void) const throw() {
+const char *InvalidOperandException::what(void) const throw() {
 	return ("Invalid operand");
 }
 
-const char *InvalidOperandException::what(void) const throw() {
+const char *InvalidOperatorException::what(void) const throw() {
 	return ("Invalid operator");
 }
 
