@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 09:08:23 by acarlott          #+#    #+#             */
-/*   Updated: 2024/01/16 18:13:39 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/01/30 12:59:31 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	PmergeMe::_PmergeMeParser(char **args)
 
 void	PmergeMe::_SortList(list &toSort)
 {
-	if (toSort.size() <= 1)
+	if (toSort.size() <= 2)
 		return ;
 	size_t	half = (toSort.size() / 2);
 	itList	it = toSort.begin();
@@ -118,6 +118,14 @@ void	PmergeMe::_SortList(list &toSort)
 	list	highPart(it, toSort.end());
 	_SortList(lowPart);
 	_SortList(highPart);
+	// std::cout << "low part: " << std::endl;
+	// for (itList it = lowPart.begin(); it != lowPart.end(); it++) {
+	// 	std::cout << *it << " " << std::endl;
+	// }
+	// std::cout << "high part: " << std::endl;
+	// for (itList it = highPart.begin(); it != highPart.end(); it++) {
+	// 	std::cout << *it << " " << std::endl;
+	// }
 	itList	lowPartIt = lowPart.begin();
 	itList	highPartIt = highPart.begin();
 	while (lowPartIt != lowPart.end() && highPartIt != highPart.end()) {
@@ -137,30 +145,26 @@ void	PmergeMe::_SortList(list &toSort)
 
 void	PmergeMe::_SortVector(vector &toSort)
 {
-	if (toSort.size() <= 1)
-		return ;
-	size_t	half = (toSort.size() / 2);
-	vector	lowPart(toSort.begin(), toSort.begin() + half);
-	vector	highPart(toSort.begin() + half, toSort.end());
-	vector	result;
-
-	_SortVector(lowPart);
-	_SortVector(highPart);
-	itVector	lowPartIt = lowPart.begin();
-	itVector	highPartIt = highPart.begin();
-	while (lowPartIt != lowPart.end() && highPartIt != highPart.end()) {
-		if (*lowPartIt < *highPartIt) {
-			result.push_back(*lowPartIt);
-			lowPartIt++;
+	std::vector<std::pair<int, int> >	pairs;
+	int									temp;
+	
+	for (size_t i = 0; i < toSort.size(); i += 2) {
+		if (i + 1 < toSort.size())
+			pairs.push_back(std::make_pair(toSort[i], toSort[i + 1]));
+		else
+			pairs.push_back(std::make_pair(toSort[i], -1));
+		if (pairs.back().second != -1) {
+			if (pairs.back().first < pairs.back().second) {
+				temp = pairs.back().first;
+				pairs.back().first = pairs.back().second;
+				pairs.back().second = temp;
+			}
+			std::cout << pairs.back().first << " " << pairs.back().second << " " << std::endl;
 		}
-		else {
-			result.push_back(*highPartIt);
-			highPartIt++;
-		}
+		else
+			std::cout << pairs.back().first << std::endl;
 	}
-	result.insert(result.end(), lowPartIt, lowPart.end());
-	result.insert(result.end(), highPartIt, highPart.end());
-	toSort = result;
+	pairs = this->_recursiveMerge(pairs);
 }
 
 /*

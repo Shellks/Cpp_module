@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 09:07:28 by acarlott          #+#    #+#             */
-/*   Updated: 2024/01/16 17:57:08 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/01/30 13:01:18 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,37 @@ class PmergeMe
 		void	_PmergeMeSort(char **args);
 		void	_SortVector(vector &_vector);
 		void	_SortList(list &_list);
+		
+		template< typename T >
+		T		_recursiveMerge(T &pairs) {
+			T	first;
+			T	second;
+			size_t	half = (pairs.size() / 2);
+			for (size_t i = 0; i < pairs.size(); i++) {
+				if (i < half)
+					first.push_back(pairs[i]);
+				else
+					second.push_back(pairs[i]);
+			}
+			//pairs.clear();
+			if (first.size() > 1)
+				this->_recursiveMerge(first);
+			if (second.size() > 1)
+				this->_recursiveMerge(second);
+			typename T::iterator it_first = first.begin();
+			typename T::iterator it_second = second.begin();
+			while (it_first != first.end() || it_second != second.end()) {
+				if (it_second == second.end() || (it_first != first.end() && it_first->first < it_second->first)) {
+					pairs.push_back(*it_first);
+					it_first++;
+				}
+				else {
+					pairs.push_back(*it_second);
+					it_second++;
+				}
+			}
+			return (pairs);
+		};
 		
 	public:
 		PmergeMe(char **args);
