@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 09:08:23 by acarlott          #+#    #+#             */
-/*   Updated: 2024/01/30 12:59:31 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/02/02 15:03:08 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,19 +152,30 @@ void	PmergeMe::_SortVector(vector &toSort)
 		if (i + 1 < toSort.size())
 			pairs.push_back(std::make_pair(toSort[i], toSort[i + 1]));
 		else
-			pairs.push_back(std::make_pair(toSort[i], -1));
-		if (pairs.back().second != -1) {
-			if (pairs.back().first < pairs.back().second) {
+			pairs.push_back(std::make_pair(toSort[i], ODD));
+		if (pairs.back().second != ODD && pairs.back().first < pairs.back().second) {
 				temp = pairs.back().first;
 				pairs.back().first = pairs.back().second;
 				pairs.back().second = temp;
-			}
-			std::cout << pairs.back().first << " " << pairs.back().second << " " << std::endl;
 		}
-		else
-			std::cout << pairs.back().first << std::endl;
 	}
 	pairs = this->_recursiveMerge(pairs);
+	for (size_t i = 0; i < pairs.size(); i++) {
+		std::cout << pairs[i].first << " " << pairs[i].second << " " << std::endl;
+	}
+	toSort.clear();
+	toSort.push_back(pairs.front().second);
+	for (size_t i = 0; i < pairs.size(); i++)
+		toSort.push_back(pairs[i].first);
+	size_t index = 0;
+	size_t area = 1;
+	for (size_t i = 1; index < pairs.size() - 1; i++) {
+		index += area;
+		area = (area << 1) - 1;
+		itVector it = std::lower_bound(toSort.begin(), toSort.end(), pairs[index].second);
+		if (pairs[index].second != ODD)
+			toSort.insert(it, pairs[index].second);
+	}
 }
 
 /*

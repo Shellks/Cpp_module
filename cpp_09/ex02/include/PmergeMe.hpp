@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 09:07:28 by acarlott          #+#    #+#             */
-/*   Updated: 2024/01/30 13:01:18 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/02/02 14:25:31 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 #include <iterator> //std::next
 #include <ctime> //clock
 
+#define ODD -1
+
 typedef std::vector<int> vector;
 typedef vector::iterator itVector;
 typedef std::list<int> list;
@@ -52,6 +54,7 @@ class PmergeMe
 		T		_recursiveMerge(T &pairs) {
 			T	first;
 			T	second;
+			T	mergedPairs;
 			size_t	half = (pairs.size() / 2);
 			for (size_t i = 0; i < pairs.size(); i++) {
 				if (i < half)
@@ -59,7 +62,7 @@ class PmergeMe
 				else
 					second.push_back(pairs[i]);
 			}
-			//pairs.clear();
+			pairs.clear();
 			if (first.size() > 1)
 				this->_recursiveMerge(first);
 			if (second.size() > 1)
