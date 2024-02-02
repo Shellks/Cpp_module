@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 09:08:23 by acarlott          #+#    #+#             */
-/*   Updated: 2024/02/02 15:03:08 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/02/02 16:11:05 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,16 +165,21 @@ void	PmergeMe::_SortVector(vector &toSort)
 	}
 	toSort.clear();
 	toSort.push_back(pairs.front().second);
-	for (size_t i = 0; i < pairs.size(); i++)
-		toSort.push_back(pairs[i].first);
+	for (size_t i = 0; i < pairs.size(); i++) {
+		if (pairs[i].first != ODD && pairs[i].second != ODD)
+			toSort.push_back(pairs[i].first);
+		else if (pairs[i].second == ODD) {
+			pairs.push_back(std::make_pair(ODD, pairs[i].first));
+			pairs.erase(pairs.begin() + i);
+		}
+	}
 	size_t index = 0;
 	size_t area = 1;
 	for (size_t i = 1; index < pairs.size() - 1; i++) {
 		index += area;
 		area = (area << 1) - 1;
 		itVector it = std::lower_bound(toSort.begin(), toSort.end(), pairs[index].second);
-		if (pairs[index].second != ODD)
-			toSort.insert(it, pairs[index].second);
+		toSort.insert(it, pairs[index].second);
 	}
 }
 
