@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 09:07:28 by acarlott          #+#    #+#             */
-/*   Updated: 2024/02/02 14:25:31 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/02/06 12:56:36 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,15 @@ class PmergeMe
 			T	first;
 			T	second;
 			T	mergedPairs;
+			size_t count = 0;
 			size_t	half = (pairs.size() / 2);
-			for (size_t i = 0; i < pairs.size(); i++) {
-				if (i < half)
-					first.push_back(pairs[i]);
+			
+			for (typename T::iterator it = pairs.begin(); it != pairs.end(); it++) {
+				if (count < half)
+					first.push_back(*it);
 				else
-					second.push_back(pairs[i]);
+					second.push_back(*it);
+				count++;
 			}
 			pairs.clear();
 			if (first.size() > 1)
