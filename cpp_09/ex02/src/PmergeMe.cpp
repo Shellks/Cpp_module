@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 09:08:23 by acarlott          #+#    #+#             */
-/*   Updated: 2024/02/06 13:29:43 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/02/06 15:44:28 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,9 @@ void	PmergeMe::_PmergeMeSort(char **args)
 	endTime = clock();
 	std::cout << "Time to process a range of " << this->_list.size() << " elements with std::list : " << std::flush;
 	std::cout << std::fixed << std::setprecision(6) << (static_cast<double>(endTime - startTime) / CLOCKS_PER_SEC) << " us" << std::endl;
+	std::cout << std::endl << "After: " << std::flush;
+	for (std::list<int>::iterator it = _list.begin(); it != _list.end(); it++)
+		std::cout << *it << " " << std::flush;
 }
 
 void	PmergeMe::_PmergeMeParser(char **args)
@@ -106,11 +109,12 @@ void	PmergeMe::_SortList(list &toSort)
 	
 	for (itList it = toSort.begin(); it != toSort.end(); it++) {
 		int first = *it;
-		it++;
-		if (it != toSort.end())
+		if (++it != toSort.end())
 			pairs.push_back(std::make_pair(first, *it));
-		else
+		else {
 			pairs.push_back(std::make_pair(first, ODD));
+			break ;
+		}
 		if (pairs.back().second != ODD && pairs.back().first < pairs.back().second) {
 				int temp = pairs.back().first;
 				pairs.back().first = pairs.back().second;
@@ -119,17 +123,16 @@ void	PmergeMe::_SortList(list &toSort)
 	}
 	pairs = this->_recursiveMerge(pairs);
 	toSort.clear();
+	for (std::list<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); it++) {
+		if (it->second == ODD) {
+			pairs.push_back(std::make_pair(ODD, it->first));
+			it = pairs.erase(it);
+		}
+	}
 	toSort.push_back(pairs.front().second);
-	size_t	count = 0;
 	for (std::list<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); it++) {
 		if (it->first != ODD && it->second != ODD)
 			toSort.push_back(it->first);
-		else if (it->second == ODD) {
-			pairs.push_back(std::make_pair(ODD, it->first));
-			pairs.erase(it);
-			it--;
-		}
-		count++;
 	}
 	size_t index = 0;
 	size_t area = 0;
@@ -166,16 +169,16 @@ void	PmergeMe::_SortVector(vector &toSort)
 	}
 	pairs = this->_recursiveMerge(pairs);
 	toSort.clear();
-	toSort.push_back(pairs.front().second);
 	for (size_t i = 0; i < pairs.size(); i++) {
-		if (pairs[i].first != ODD && pairs[i].second != ODD)
-			toSort.push_back(pairs[i].first);
-		else if (pairs[i].second == ODD) {
+		if (pairs[i].second == ODD) {
 			pairs.push_back(std::make_pair(ODD, pairs[i].first));
 			pairs.erase(pairs.begin() + i);
-			i--;
 		}
 	}
+	toSort.push_back(pairs.front().second);
+	for (size_t i = 0; i < pairs.size(); i++)
+		if (pairs[i].first != ODD)
+			toSort.push_back(pairs[i].first);
 	size_t index = 0;
 	size_t area = 0;
 	for (size_t i = 0; index < pairs.size() - 1; i++) {
