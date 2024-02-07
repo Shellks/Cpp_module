@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 09:08:23 by acarlott          #+#    #+#             */
-/*   Updated: 2024/02/06 15:44:28 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/02/07 13:09:32 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,6 @@ void	PmergeMe::_PmergeMeSort(char **args)
 	endTime = clock();
 	std::cout << "Time to process a range of " << this->_list.size() << " elements with std::list : " << std::flush;
 	std::cout << std::fixed << std::setprecision(6) << (static_cast<double>(endTime - startTime) / CLOCKS_PER_SEC) << " us" << std::endl;
-	std::cout << std::endl << "After: " << std::flush;
-	for (std::list<int>::iterator it = _list.begin(); it != _list.end(); it++)
-		std::cout << *it << " " << std::flush;
 }
 
 void	PmergeMe::_PmergeMeParser(char **args)
