@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:25:52 by acarlott          #+#    #+#             */
-/*   Updated: 2024/02/07 12:22:48 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/02/07 12:50:14 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,18 @@ void	BitcoinExchange::_parseDbCsv()
 			if (!date.compare("date"))
 				continue;
 			else if (date.find_first_not_of("0123456789-") == std::string::npos && value.find_first_not_of("0123456789.f")  == std::string::npos) {
-				if (date.size() != 10 || date[4] != '-' || date[7] != '-')
+				if (date.size() != 10 || date[4] != '-' || date[7] != '-' || value.empty())
 					throw (BitcoinExchange::BadFileException());
+				size_t count = 0;
+				for (size_t i = 0; i < value.size(); i++) {
+					if (value[i] == '.' ) {
+						if (i + 1 == value.size() || value.size() == 1 || count > 0)
+							throw (BitcoinExchange::BadFileException());
+						count++;
+					}
+					else if (value[i] == 'f' && (i + 1 != value.size() || value.size() == 1 || !std::isdigit(value[i - 1])))
+						throw (BitcoinExchange::BadFileException());
+				}
 				this->_data.insert(std::make_pair(date, std::atof(value.c_str())));
 			}
 			else
@@ -175,7 +185,7 @@ bool	BitcoinExchange::_isValidInput(std::string const &date, std::string const &
 				}
 				break;
 			case '.':
-				if (i + 1 == amount.size() || amount.size() == 1 || count > 1) {
+				if (i + 1 == amount.size() || amount.size() == 1 || count > 0) {
 					BADINPUT_MSG;
 					return false;
 				}
