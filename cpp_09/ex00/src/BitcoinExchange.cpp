@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:25:52 by acarlott          #+#    #+#             */
-/*   Updated: 2024/01/05 16:26:21 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/02/07 12:22:48 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,11 @@ void	BitcoinExchange::_parseDbCsv()
 		while (std::getline(strStream, date, ',') && std::getline(strStream, value, '\n')) {
 			if (!date.compare("date"))
 				continue;
-			else if (date.find_first_not_of("0123456789-") == std::string::npos && value.find_first_not_of("0123456789.")  == std::string::npos)
+			else if (date.find_first_not_of("0123456789-") == std::string::npos && value.find_first_not_of("0123456789.f")  == std::string::npos) {
+				if (date.size() != 10 || date[4] != '-' || date[7] != '-')
+					throw (BitcoinExchange::BadFileException());
 				this->_data.insert(std::make_pair(date, std::atof(value.c_str())));
+			}
 			else
 				throw (BitcoinExchange::BadFileException());
 		}
@@ -87,11 +90,15 @@ void	BitcoinExchange::_parseDbUser(const char *file)
 	std::string	line;
 	std::ifstream	fileStream(file);
 	
-	if (!fileStream.is_open() || fileStream.peek() == std::ifstream::traits_type::eof()) {
+	if (!fileStream.is_open()) {
 		fileStream.close();
 		throw(BitcoinExchange::FileNotExistException());
 	}
 	while (std::getline(fileStream, line)) {
+		if (line.size() == 1 && line[0] == '|') {
+			std::cout << "Error: bad input => " << line << std::endl;
+			continue ;
+		}
 		std::stringstream	strStream(line);
 		if (std::getline(strStream, date, '|') && std::getline(strStream, amount, '\n')) {
 			if (!date.compare("date "))
@@ -101,8 +108,10 @@ void	BitcoinExchange::_parseDbUser(const char *file)
 			this->_printBtcValue(date, amount);
 		}
 		else {
-			date = this->_trimParser(date);
-			this->_printBtcValue(date, "null");
+			if (!date.empty()) {
+				date = this->_trimParser(date);
+				this->_printBtcValue(date, "null");
+			}
 		}
 	}
 	fileStream.close();
@@ -138,37 +147,55 @@ bool	BitcoinExchange::_isValidInput(std::string const &date, std::string const &
 {
 	if (!amount.compare("null")) {
 		std::cout << "Error: bad input => " << date << std::endl;
-		return (false);
+		return false;
 	}
 	if (date.size() != 10 || date[4] != '-' || date[7] != '-') {
-		std::cout << "Error: bad input => " << date << " | " << amount << std::endl;
-		return (false);
+		BADINPUT_MSG;
+		return false;
 	}
 	for (size_t i = 0; i < date.size(); i++) {
 		if (i != 4 && i != 7 && !std::isdigit(date[i])) {
-			std::cout << "Error: bad input => " << date << " | " << amount << std::endl;
-			return (false);
+			BADINPUT_MSG;
+			return false;
 		}
 	}
 	size_t	count = 0;
 	for (size_t i = 0; i < amount.size(); i++) {
-		if (amount[i] == '.')
-			count++;
-		if ((i == 0 && amount[i] == '.') || count > 1 || \
-		(!std::isdigit(amount[i]) && amount[i] != '.' && amount[i] != '-')) {
-			std::cout << "Error: bad input => " << date << " | " << amount << std::endl;
-			return (false);
+		switch (amount[i]) {
+			case '-':
+				if ( i != 0 || amount.size() == 1 || !std::isdigit(amount[i + 1])) {
+					BADINPUT_MSG;
+					return false;
+				}
+				break;
+			case 'f':
+				if ( i + 1 != amount.size() || amount.size() == 1 || !std::isdigit(amount[i - 1])) {
+					BADINPUT_MSG;
+					return false;
+				}
+				break;
+			case '.':
+				if (i + 1 == amount.size() || amount.size() == 1 || count > 1) {
+					BADINPUT_MSG;
+					return false;
+				}
+				count++;
+				break;
+		}
+		if (!std::isdigit(amount[i]) && amount[i] != '.' && amount[i] != 'f'  && amount[i] != '-') {
+			BADINPUT_MSG;
+			return false;
 		}
 	}
 	if (std::atof(amount.c_str()) < 0) {
 		std::cout <<"Error: not a positive number." << std::endl;
-		return (false);
+		return false;
 	}
 	else if (std::atof(amount.c_str()) > 1000) {
 		std::cout <<"Error: too large a number." << std::endl;
-		return (false);
+		return false;
 	}
-	return (true);
+	return true;
 }
 
 std::string	BitcoinExchange::_trimParser(std::string toTrim)
