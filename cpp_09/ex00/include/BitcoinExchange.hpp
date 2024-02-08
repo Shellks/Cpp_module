@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:25:45 by acarlott          #+#    #+#             */
-/*   Updated: 2024/02/07 12:03:59 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/02/08 14:05:18 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ class BitcoinExchange
 	private:
 		DataBase _data;
 		
+		bool		_isValidValue(std::string const &value);
+		bool		_isValidDate(std::string const &date);
 		bool		_isValidInput(std::string const &date, std::string const &amount);
 		std::string	_trimParser(std::string toTrim);
 		void		_parseDbCsv(void);
@@ -68,7 +70,6 @@ class BitcoinExchange
 				virtual const char *what(void) const throw();
 		};
 };
-
 
 
 #endif
