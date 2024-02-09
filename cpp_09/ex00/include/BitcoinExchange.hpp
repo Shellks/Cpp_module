@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:25:45 by acarlott          #+#    #+#             */
-/*   Updated: 2024/02/08 14:05:18 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/02/09 09:09:59 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
 
 typedef std::map<std::string, float> DataBase;
 typedef DataBase::iterator iterator;
-#define  BADINPUT_MSG std::cout << "Error: bad input => " << date << " | " << amount << std::endl;
 class BitcoinExchange
 {
 	private:
@@ -54,16 +53,6 @@ class BitcoinExchange
 	
 		void	btcParser(char *file);
 	
-		class FileNotExistException : public std::exception
-		{
-			public:
-				virtual const char *what(void) const throw();
-		};
-		class EmptyFileException : public std::exception
-		{
-			public:
-				virtual const char *what(void) const throw();
-		};
 		class BadFileException : public std::exception
 		{
 			public:

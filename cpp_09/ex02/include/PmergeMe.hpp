@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 09:07:28 by acarlott          #+#    #+#             */
-/*   Updated: 2024/02/06 12:56:36 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/02/09 09:20:39 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,11 @@
 #define PREFIX_ERROR "Error: PmergeMe: "
 
 #include <iostream>
-#include <iomanip> // std::fixed - std::precision
+#include <iomanip> //  std::precision
 #include <list> //std::list
 #include <vector> //std::vector
 #include <limits> //int min/max
-#include <cstdlib> // strtod (convert str to double)
-#include <cctype> //std::isdigit
 #include <cstdlib> //std::atoi
-#include <iterator> //std::next
-#include <ctime> //clock
 
 #define ODD -1
 

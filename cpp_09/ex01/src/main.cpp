@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:24:28 by acarlott          #+#    #+#             */
-/*   Updated: 2024/01/06 16:43:24 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/02/09 09:15:20 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main(int argc, char **argv)
 	}
 	try {
 		int result = RPNCalculator(argv[1]);
-		std::cout << CYAN << result << RESET << std::endl;
+		std::cout << result << std::endl;
 	}
 	catch (const std::exception &e) {
 		std::cout << RED << PREFIX_ERROR << e.what() << RESET << std::endl;

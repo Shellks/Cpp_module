@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:25:52 by acarlott          #+#    #+#             */
-/*   Updated: 2024/02/08 16:54:21 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/02/09 09:10:04 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ void	BitcoinExchange::_parseDbCsv()
 	size_t			count = 0;
 
 	if (!fileStream.is_open())
-		throw(BitcoinExchange::FileNotExistException());
+		throw(std::invalid_argument("data file does not exist or has a forbidden permission"));
 	else if (std::getline(fileStream, buffer, '\0')) {
 		std::stringstream	strStream(buffer);
 		while (std::getline(strStream, date, ',') && std::getline(strStream, value, '\n')) {
 			count++;
 			if (count == 1) {
 				if (date.compare("date") || value.compare("exchange_rate"))
-					throw (std::invalid_argument("the csv headers must be \"date,exchange_rate\""));
+					throw (std::invalid_argument("csv headers must be \"date,exchange_rate\""));
 				else
 					continue;
 			}
@@ -81,10 +81,10 @@ void	BitcoinExchange::_parseDbCsv()
 	}
 	else {
 		fileStream.close();
-		throw(BitcoinExchange::EmptyFileException());
+		throw(std::invalid_argument("data file is empty"));
 	}
 	if (count < 2)
-		throw(std::invalid_argument("Need one or more data in csv file"));
+		throw(std::invalid_argument("Need one or more data in data file"));
 	fileStream.close(); 
 }
 
@@ -97,7 +97,7 @@ void	BitcoinExchange::_parseDbUser(const char *file)
 	
 	if (!fileStream.is_open()) {
 		fileStream.close();
-		throw(BitcoinExchange::FileNotExistException());
+		throw(std::invalid_argument("input file does not exist or has a forbidden permission"));
 	}
 	size_t	count = 0;
 	while (std::getline(fileStream, line)) {
@@ -172,7 +172,7 @@ bool	BitcoinExchange::_isValidInput(std::string const &date, std::string const &
 		return false;
 	}
 	if (this->_isValidValue(amount) == false || this->_isValidDate(date) == false) {
-		BADINPUT_MSG;
+		std::cout << "Error: bad input => " << date << " | " << amount << std::endl;
 		return false;
 	}
 	if (std::atof(amount.c_str()) < 0) {
@@ -250,16 +250,6 @@ bool	BitcoinExchange::_isValidDate(std::string const &date)
 /*
 ** --------------------------------- EXCEPTION ----------------------------------
 */
-
-const char *BitcoinExchange::FileNotExistException::what(void) const throw()
-{
-	return ("Invalid file");
-}
-
-const char *BitcoinExchange::EmptyFileException::what(void) const throw()
-{
-	return ("Empty file");
-}
 
 const char *BitcoinExchange::BadFileException::what(void) const throw()
 {
