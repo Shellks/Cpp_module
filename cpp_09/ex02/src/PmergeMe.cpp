@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 09:08:23 by acarlott          #+#    #+#             */
-/*   Updated: 2024/02/09 09:40:24 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/02/09 14:18:31 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,14 @@ void	PmergeMe::_PmergeMeSort(char **args)
 	for (std::vector<int>::iterator it = _vector.begin(); it != _vector.end(); it++)
 		std::cout << *it << " " << std::flush;
 	std::cout << std::endl << "Time to process a range of " << this->_vector.size() << " elements with std::vector : " << std::flush;
-	std::cout << std::fixed << std::setprecision(6) << (static_cast<double>(endTime - startTime) / CLOCKS_PER_SEC) << " us" << std::endl;
+	std::cout << std::fixed << std::setprecision(4) << ((static_cast<double>(endTime - startTime) / CLOCKS_PER_SEC) * 1000) << " ms" << std::endl;
 	startTime = clock();
 	for (char **tab = args; *tab; tab++)
 		this->_list.push_back((std::atoi(*tab)));
 	this->_SortList(this->_list);
 	endTime = clock();
 	std::cout << "Time to process a range of " << this->_list.size() << " elements with std::list : " << std::flush;
-	std::cout << std::fixed << std::setprecision(6) << (static_cast<double>(endTime - startTime) / CLOCKS_PER_SEC) << " us" << std::endl;
+	std::cout << std::fixed << std::setprecision(4) << ((static_cast<double>(endTime - startTime) / CLOCKS_PER_SEC) * 1000)  << " ms" << std::endl;
 }
 
 void	PmergeMe::_PmergeMeParser(char **args)

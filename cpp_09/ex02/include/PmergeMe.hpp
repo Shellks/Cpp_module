@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 09:07:28 by acarlott          #+#    #+#             */
-/*   Updated: 2024/02/09 09:20:39 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/02/09 10:03:53 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 #define RESET "\033[0m"
 #define RED "\033[31m"
-#define GREEN "\033[32m"
-#define CYAN "\033[36m"
 #define PREFIX_ERROR "Error: PmergeMe: "
 
 #include <iostream>

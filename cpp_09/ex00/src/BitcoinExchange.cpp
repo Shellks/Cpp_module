@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:25:52 by acarlott          #+#    #+#             */
-/*   Updated: 2024/02/09 09:10:04 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/02/09 11:49:17 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,18 @@ BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &src)
 ** --------------------------------- METHODS ----------------------------------
 */
 
-void	BitcoinExchange::btcParser(char *file)
+void	BitcoinExchange::btcParser(char *file, char *data)
 {
-	try {
-		this->_parseDbCsv();
+		this->_parseDbCsv(data);
 		this->_parseDbUser(file);
-	}
-	catch(const std::exception& e) {
-		std::cerr << RED << "Error: " << e.what() << RESET << std::endl;
-	}
-	
 }
 
-void	BitcoinExchange::_parseDbCsv()
+void	BitcoinExchange::_parseDbCsv(const char *data)
 {
-	std::string		path = "ressource/data.csv";
 	std::string		date;
 	std::string		value;
 	std::string		buffer;
-	std::ifstream	fileStream(path.c_str());
+	std::ifstream	fileStream(data);
 	size_t			count = 0;
 
 	if (!fileStream.is_open())

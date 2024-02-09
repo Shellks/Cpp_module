@@ -6,7 +6,7 @@
 /*   By: acarlott <acarlott@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 17:24:28 by acarlott          #+#    #+#             */
-/*   Updated: 2024/02/09 09:15:20 by acarlott         ###   ########lyon.fr   */
+/*   Updated: 2024/02/09 10:18:04 by acarlott         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 {
 	
 	if (argc != 2) {
-		std::cout << RED << "ERROR:" << BLUE << " only one argument expected \"./RPN 'RPN calcul'\"" << RESET << std::endl;
+		std::cout << RED << PREFIX_ERROR << RESET << " only one argument expected \"./RPN 'RPN calcul'\"" << std::endl;
 		return (1);
 	}
 	try {
@@ -24,8 +24,8 @@ int main(int argc, char **argv)
 		std::cout << result << std::endl;
 	}
 	catch (const std::exception &e) {
-		std::cout << RED << PREFIX_ERROR << e.what() << RESET << std::endl;
-		return (0);
+		std::cout << RED << PREFIX_ERROR << RESET << e.what() << std::endl;
+		return (1);
 	}
-	return (1);
+	return (0);
 }
